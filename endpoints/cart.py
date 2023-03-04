@@ -15,10 +15,9 @@ CART_TAG = "Cart"
 
 @app.get('/cart/all', tags=[CART_TAG])
 def get_cart_items():
-
     payload = IToken(
         token="ghjkl",
-        cu_id=1,
+        cu_id=3,
     )
 
     items = GetCartItems(
@@ -37,10 +36,9 @@ def get_cart_items():
 
 @app.get('/cart/{cart_item_id}', tags=[CART_TAG])
 def get_cart_item(cart_item_id: int):
-
     payload = IToken(
         token="ghjkl",
-        cu_id=1,
+        cu_id=3,
     )
 
     item = GetCartItem(
@@ -53,14 +51,13 @@ def get_cart_item(cart_item_id: int):
         message="",
         status_code=200,
         content={
-            "cart_item": item
+            "cart_item": item or {}
         }
     )
 
 
 @app.post("/cart", tags=[CART_TAG])
 def add_to_cart(data: IAddToCart):
-
     is_customer_exists = IsCustomerExists(
         customer_id=data.customer_id
     ).run()
@@ -76,11 +73,17 @@ def add_to_cart(data: IAddToCart):
         book_id=data.book_id,
     ).run()
 
+    items = GetCartItems(
+        customer_id=data.customer_id
+    ).run()
+
     return Response(
         access_token="",
         message="",
         status_code=200,
-        content={},
+        content={
+            "cart_items": items
+        },
     )
 
 
@@ -96,4 +99,3 @@ def remove_to_cart(cart_item_id: int):
         status_code=200,
         content={},
     )
-
