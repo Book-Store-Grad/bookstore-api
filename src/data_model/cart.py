@@ -6,6 +6,7 @@ from config import conn_string
 from src.core.database.data_types import DataType
 from src.data_model.book import Book
 from src.data_model.customer import Customer
+from src.data_model.order import Order
 
 
 class CartItem(DataModel):
@@ -22,6 +23,10 @@ class CartItem(DataModel):
             TableField(name='b_id', data_type=DataType.INTEGER.value, references=ReferencesFK(
                 table_name=Book.table_name,
                 field_name="b_id",
+            ).get_sql()),
+            TableField(name='o_id', data_type=DataType.INTEGER.value, not_null=False, references=ReferencesFK(
+                table_name=Order.table_name,
+                field_name="o_id",
             ).get_sql()),
             TableField(name='cai_created_on', data_type=DataType.TIMESTAMPTZ.value, default="CURRENT_TIMESTAMP"),
         ]
