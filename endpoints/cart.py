@@ -1,8 +1,11 @@
+from fastapi import HTTPException
+
 from server.application import app
 from src.business_model.cart.add_to_cart import AddToCart
 from src.business_model.cart.get_cart_item import GetCartItem
 from src.business_model.cart.get_cart_items import GetCartItems
 from src.business_model.cart.remove_from_cart import RemoveFromCart
+from src.business_model.customer.is_customer_exists import IsCustomerExists
 from src.core.response import Response
 from src.interface.cart import IAddToCart
 from src.interface.token import IToken
@@ -58,6 +61,15 @@ def get_cart_item(cart_item_id: int):
 @app.post("/cart", tags=[CART_TAG])
 def add_to_cart(data: IAddToCart):
 
+    is_customer_exists = IsCustomerExists(
+        customer_id=data.customer_id
+    ).run()
+
+    if not is_customer_exists:
+        raise HTTPException(
+            detail="Customer Id does not exist",
+            status_code=400
+        )
 
     AddToCart(
         customer_id=data.customer_id,
