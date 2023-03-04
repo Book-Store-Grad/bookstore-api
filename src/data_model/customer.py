@@ -18,6 +18,7 @@ class Customer(DataModel):
             TableField(name='cu_email', data_type=DataType.CHARACTER_VARYING.value),
             TableField(name='cu_password', data_type=DataType.CHARACTER_VARYING.value),
             TableField(name='cu_image_url', data_type=DataType.CHARACTER_VARYING.value),
+            TableField(name='cu_gender', data_type=DataType.BOOLEAN.value),
             TableField(name='cu_role', data_type=DataType.CHARACTER_VARYING.value, default="'CUSTOMER'"),
             TableField(name='cu_created_on', data_type=DataType.TIMESTAMPTZ.value, default="CURRENT_TIMESTAMP"),
         ]
