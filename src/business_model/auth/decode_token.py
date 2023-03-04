@@ -5,7 +5,7 @@ import jwt
 from src.interface.token import IToken
 
 
-class DecodeAuthToken:
+class DecodeToken:
     def __init__(self, token: str, strict: bool = True):
         self.token = token
         self.strict = strict
