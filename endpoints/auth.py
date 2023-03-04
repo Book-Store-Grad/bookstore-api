@@ -4,7 +4,7 @@ from pydantic import BaseModel
 from server.application import app
 from src.business_model.auth.sign_in import SignIn
 from src.business_model.customer.create_customer import CreateCustomer
-from src.business_model.customer.is_customer_exists import IsCustomerExists
+from src.business_model.customer.is_customer_exists_by_email import IsCustomerExistsByEmail
 from src.core.response import Response
 from src.interface.customer import ICustomer
 
@@ -52,7 +52,7 @@ def signin(user: ISignIn):
 
 @app.post('/auth/signup', tags=[AUTHENTICATION_TAG])
 def signup(user: ISignUp):
-    exists = IsCustomerExists(
+    exists = IsCustomerExistsByEmail(
         email=user.email
     ).run()
 
