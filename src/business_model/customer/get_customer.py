@@ -13,10 +13,10 @@ class GetCustomer(BusinessModel):
         self.customer_id = customer_id
 
     def run(self, data: dict = None, conditions: dict = None) -> dict:
-        return super().run(
-            conditions={
+        return self.model.get_one(
+            condition={
                 "cu_id": {
                     "$value": str(self.customer_id)
                 }
             }
-        ).result
+        ).show(True).result
