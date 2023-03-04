@@ -1,4 +1,7 @@
+import os
+
 from fastapi import HTTPException
+from starlette.responses import FileResponse
 
 from server.application import app
 from src.business_model.customer.get_customer import GetCustomer
@@ -9,7 +12,7 @@ from src.interface.token import IToken
 CUSTOMER_TAG = "Customer"
 
 
-@app.get('/profile', tags=[CUSTOMER_TAG])
+@app.get('/customer/profile', tags=[CUSTOMER_TAG])
 def get_customer():
     token = IToken(
         token="dfghj",
@@ -37,3 +40,13 @@ def get_customer():
             "customer": customer
         },
     )
+
+
+@app.get('/customer/image', tags=[CUSTOMER_TAG])
+def get_image():
+    token = IToken(
+        token="dfghj",
+        cu_id=3,
+    )
+    # TODO: Get Image path
+    return FileResponse("")
