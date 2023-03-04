@@ -27,8 +27,8 @@ def create_table(model: DataModel) -> ExecutionResult:
 tables: List[DataModel] = [
     Book(),
     Customer(),
-    CartItem(),
     Order(),
+    CartItem(),
 ]
 
 
