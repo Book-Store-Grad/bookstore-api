@@ -2,11 +2,11 @@ from fastapi import HTTPException
 from pydantic import BaseModel
 
 from server.application import app
-from src.business_model.book.CreateBook import CreateBook
-from src.business_model.book.DeleteBook import DeleteBook
-from src.business_model.book.GetBook import GetBook
-from src.business_model.book.GetBooks import GetBooks
-from src.business_model.book.UpdateBook import UpdateBook
+from src.business_model.book.create_book import CreateBook
+from src.business_model.book.delete_book import DeleteBook
+from src.business_model.book.get_book import GetBook
+from src.business_model.book.get_books import GetBooks
+from src.business_model.book.update_book import UpdateBook
 from src.core.response import Response
 from view.book import IBook, IEditBook
 
