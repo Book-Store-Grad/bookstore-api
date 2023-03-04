@@ -4,15 +4,23 @@ from server.application import app
 
 
 class ISignIn(BaseModel):
-    pass
+    email: str
+    password: str
 
 
 class ISignUp(BaseModel):
-    pass
+    name: str
+    email: str
+    password: str
+    gender: bool
 
 
 class IResetPassword(BaseModel):
-    pass
+    reset_token: str
+
+
+class IForgetPassword(BaseModel):
+    email: str
 
 
 AUTHENTICATION_TAG = 'Authentication'
@@ -20,19 +28,20 @@ AUTHENTICATION_TAG = 'Authentication'
 
 @app.post('/auth/signin', tags=[AUTHENTICATION_TAG])
 def signin(user: ISignIn):
-    pass
+    return user.__dict__
 
 
 @app.post('/auth/signup', tags=[AUTHENTICATION_TAG])
 def signup(user: ISignUp):
-    pass
+    return user.__dict__
 
 
 @app.post('/auth/forget-password', tags=[AUTHENTICATION_TAG])
-def forget_password(email: str):
-    pass
+def forget_password(data: IForgetPassword):
+    return data.__dict__
 
 
 @app.post('/auth/reset-password', tags=[AUTHENTICATION_TAG])
 def reset_password(data: IResetPassword):
-    pass
+    return data.__dict__
+
