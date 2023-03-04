@@ -3,6 +3,7 @@ from pydantic import BaseModel
 
 from server.application import app
 from src.business_model.book.CreateBook import CreateBook
+from src.business_model.book.DeleteBook import DeleteBook
 from src.business_model.book.GetBook import GetBook
 from src.business_model.book.GetBooks import GetBooks
 from src.business_model.book.UpdateBook import UpdateBook
@@ -83,4 +84,26 @@ def update_book(book_id: int, book: IEditBook):
         status_code=200,
         message="Success",
         content=book
+    )
+
+
+@app.delete('/book/{book_id}', tags=['Book'])
+def delete_book(book_id: int):
+    try:
+        book_id = int(book_id)
+    except:
+        raise HTTPException(
+            detail="Book Id must be a valid int",
+            status_code=400
+        )
+
+    DeleteBook(
+        book_id=book_id
+    ).run()
+
+    return Response(
+        access_token="",
+        status_code=200,
+        message="Success",
+        content={},
     )

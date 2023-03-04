@@ -19,6 +19,8 @@ class DeleteBook(BusinessModel):
         return self.model.delete(
             data={},
             conditions={
-                "b_id": self.book_id
+                "b_id": {
+                    "$value": str(self.book_id)
+                }
             }
         ).commit().result
