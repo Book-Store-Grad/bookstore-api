@@ -43,10 +43,9 @@ def get_customer(token: str = Depends(oauth_schema)):
 
 
 @app.get('/customer/image', tags=[CUSTOMER_TAG])
-def get_image():
-    token = IToken(
-        token="dfghj",
-        cu_id=3,
-    )
+def get_image(token: str = Depends(oauth_schema)):
+    payload = DecodeToken(
+        token=token
+    ).run()
     # TODO: Get Image path
     return FileResponse("")
