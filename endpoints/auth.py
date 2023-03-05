@@ -1,7 +1,7 @@
-from fastapi import HTTPException
+from fastapi import HTTPException, Depends
 from pydantic import BaseModel
 
-from server.application import app
+from server.application import app, oauth_schema
 from src.business_model.auth.generate_token import GenerateToken
 from src.business_model.auth.sign_in import SignIn
 from src.business_model.customer.create_customer import CreateCustomer
@@ -95,11 +95,15 @@ def signup(user: ISignUp):
 
 
 @app.post('/auth/forget-password', tags=[AUTHENTICATION_TAG])
-def forget_password(data: IForgetPassword):
-    return data.__dict__
+def forget_password(token: str = Depends(oauth_schema)):
+    return Response(
+        access_token=token,
+        status_code=200,
+        message="Success",
+        content={}
+    )
 
 
 @app.post('/auth/reset-password', tags=[AUTHENTICATION_TAG])
-def reset_password(data: IResetPassword):
+def reset_password(data: IResetPassword, token: str = Depends(oauth_schema)):
     return data.__dict__
-
