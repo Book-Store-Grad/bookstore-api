@@ -106,4 +106,9 @@ def forget_password(token: str = Depends(oauth_schema)):
 
 @app.post('/auth/reset-password', tags=[AUTHENTICATION_TAG])
 def reset_password(data: IResetPassword, token: str = Depends(oauth_schema)):
-    return data.__dict__
+    return Response(
+        access_token=token,
+        status_code=200,
+        message="Success",
+        content={}
+    )
