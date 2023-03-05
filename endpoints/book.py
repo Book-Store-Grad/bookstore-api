@@ -1,5 +1,4 @@
 from fastapi import HTTPException
-from pydantic import BaseModel
 
 from server.application import app
 from src.business_model.book.create_book import CreateBook
@@ -8,10 +7,12 @@ from src.business_model.book.get_book import GetBook
 from src.business_model.book.get_books import GetBooks
 from src.business_model.book.update_book import UpdateBook
 from src.core.response import Response
-from view.book import IBook, IEditBook
+from view.book import IEditBook
+
+CART_TAG = "Book"
 
 
-@app.get("/book/all", tags=['Book'])
+@app.get("/book/all", tags=[CART_TAG])
 def get_all_books():
     books = GetBooks().run()
 
@@ -25,7 +26,7 @@ def get_all_books():
     )
 
 
-@app.get("/book/{book_id}", tags=['Book'])
+@app.get("/book/{book_id}", tags=[CART_TAG])
 def get_book(book_id: int):
     try:
         book_id = int(book_id)
@@ -49,7 +50,7 @@ def get_book(book_id: int):
     )
 
 
-@app.post("/book", tags=['Book'])
+@app.post("/book", tags=[CART_TAG])
 def create_book(book: IEditBook):
 
     CreateBook(
@@ -64,7 +65,7 @@ def create_book(book: IEditBook):
     )
 
 
-@app.put("/book/{book_id}", tags=['Book'])
+@app.put("/book/{book_id}", tags=[CART_TAG])
 def update_book(book_id: int, book: IEditBook):
     try:
         book_id = int(book_id)
@@ -87,7 +88,7 @@ def update_book(book_id: int, book: IEditBook):
     )
 
 
-@app.delete('/book/{book_id}', tags=['Book'])
+@app.delete('/book/{book_id}', tags=[CART_TAG])
 def delete_book(book_id: int):
     try:
         book_id = int(book_id)
