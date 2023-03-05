@@ -1,4 +1,5 @@
 from fastapi import HTTPException, Depends
+from fastapi.security import OAuth2PasswordRequestForm
 from pydantic import BaseModel
 
 from server.application import app, oauth_schema
@@ -10,8 +11,8 @@ from src.core.response import Response
 from src.interface.customer import ICustomer
 
 
-class ISignIn(BaseModel):
-    email: str
+class ISignIn(OAuth2PasswordRequestForm):
+    username: str
     password: str
 
 
@@ -33,10 +34,10 @@ class IForgetPassword(BaseModel):
 AUTHENTICATION_TAG = 'Authentication'
 
 
-@app.post('/auth/signin', tags=[AUTHENTICATION_TAG])
-def signin(user: ISignIn):
+@app.post('/auth', tags=[AUTHENTICATION_TAG])
+def signin(user: ISignIn = Depends()):
     exists = IsCustomerExistsByEmail(
-        email=user.email
+        email=user.username
     ).run()
 
     if not exists:
@@ -46,7 +47,7 @@ def signin(user: ISignIn):
         )
 
     customer = SignIn(
-        email=user.email,
+        email=user.username,
         password=user.password,
     ).run()
 
