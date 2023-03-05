@@ -4,14 +4,13 @@ import jwt
 
 
 class GenerateToken:
-    def __init__(self, user_id, vendor: dict = None):
-        self.user_id = user_id
-        self.vendor = vendor
+    def __init__(self, customer_id: int):
+        self.customer_id = customer_id
 
-    def run(self):
+    def run(self) -> str:
         payload = {
             'exp': datetime.datetime.utcnow() + datetime.timedelta(days=10),
-            "cu_id": self.user_id,
+            "cu_id": self.customer_id,
         }
 
         encoded_jwt = jwt.encode(

@@ -2,6 +2,7 @@ from fastapi import HTTPException
 from pydantic import BaseModel
 
 from server.application import app
+from src.business_model.auth.generate_token import GenerateToken
 from src.business_model.auth.sign_in import SignIn
 from src.business_model.customer.create_customer import CreateCustomer
 from src.business_model.customer.is_customer_exists_by_email import IsCustomerExistsByEmail
@@ -34,14 +35,27 @@ AUTHENTICATION_TAG = 'Authentication'
 
 @app.post('/auth/signin', tags=[AUTHENTICATION_TAG])
 def signin(user: ISignIn):
+    exists = IsCustomerExistsByEmail(
+        email=user.email
+    ).run()
+
+    if not exists:
+        raise HTTPException(
+            detail="Customer does not exist",
+            status_code=400
+        )
 
     customer = SignIn(
         email=user.email,
         password=user.password,
     ).run()
 
+    token = GenerateToken(
+        customer_id=customer['cu_id'],
+    ).run()
+
     return Response(
-        access_token="",
+        access_token=token,
         status_code=200,
         message="",
         content={
@@ -66,10 +80,14 @@ def signup(user: ISignUp):
         customer=ICustomer(**user.__dict__)
     ).run()
 
+    token = GenerateToken(
+        customer_id=customer['cu_id'],
+    ).run()
+
     return Response(
-        access_token="",
+        access_token=token,
         status_code=200,
-        message="",
+        message="Success",
         content={
             "customer": customer
         },
