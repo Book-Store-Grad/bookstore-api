@@ -1,9 +1,10 @@
 import os
 
-from fastapi import HTTPException
+from fastapi import HTTPException, Depends
 from starlette.responses import FileResponse
 
-from server.application import app
+from server.application import app, oauth_schema
+from src.business_model.auth.decode_token import DecodeToken
 from src.business_model.customer.get_customer import GetCustomer
 from src.business_model.customer.is_customer_exists import IsCustomerExists
 from src.core.response import Response
@@ -13,14 +14,13 @@ CUSTOMER_TAG = "Customer"
 
 
 @app.get('/customer/profile', tags=[CUSTOMER_TAG])
-def get_customer():
-    token = IToken(
-        token="dfghj",
-        cu_id=3,
-    )
+def get_customer(token: str = Depends(oauth_schema)):
+    payload = DecodeToken(
+        token=token
+    ).run()
 
     exists = IsCustomerExists(
-        customer_id=token.cu_id
+        customer_id=payload.cu_id
     )
     if not exists:
         raise HTTPException(
@@ -29,7 +29,7 @@ def get_customer():
         )
 
     customer = GetCustomer(
-        customer_id=token.cu_id
+        customer_id=payload.cu_id
     ).run()
 
     return Response(
