@@ -13,8 +13,20 @@ class GetCartItems(BusinessModel):
 
     def run(self, data: dict = None, conditions: dict = None) -> list:
         return self.model.get(
+            joins={
+                "$schema_name": "public",
+                "cu_customer": {
+                    "$table": "$this",
+                    "$type": "innerJoin",  # innerJoin, leftJoin, rightJoin
+                    "$on": {
+                        "$type": "$eq",
+                        "$tableA": "{}.cu_id".format(self.model.table_name),
+                        "$tableB": "cu_customer.cu_id",
+                    }
+                }
+            },
             condition={
-                "cu_id": {
+                "cu_customer.cu_id": {
                     "$value": str(self.customer_id)
                 }
             }
