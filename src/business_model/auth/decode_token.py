@@ -24,13 +24,13 @@ class DecodeToken:
 
         # TODO: Add Expiry Date Check
 
-        cu_id = None
+        customer_id = None
         try:
-            cu_id = int(payload['cu_id'])
+            customer_id = int(payload['cu_id'])
         except KeyError:
             pass
 
         return IToken(
             token=self.token,
-            cu_id=cu_id,
+            customer_id=customer_id,
         )
