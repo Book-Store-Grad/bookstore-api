@@ -6,7 +6,7 @@ class ICreateOrder(BaseModel):
 
 
 class IOrder(BaseModel):
-    cu_id: int
+    customer_id: int
 
 
 class IGetOrders(BaseModel):
