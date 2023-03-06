@@ -8,6 +8,3 @@ class ICreateOrder(BaseModel):
 class IOrder(BaseModel):
     customer_id: int
 
-
-class IGetOrders(BaseModel):
-    customer_id: int
