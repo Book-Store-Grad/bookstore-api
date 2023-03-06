@@ -23,6 +23,15 @@ class GetCartItems(BusinessModel):
                         "$tableA": "{}.cu_id".format(self.model.table_name),
                         "$tableB": "cu_customer.cu_id",
                     }
+                },
+                "b_book": {
+                    "$table": "$this",
+                    "$type": "innerJoin",  # innerJoin, leftJoin, rightJoin
+                    "$on": {
+                        "$type": "$eq",
+                        "$tableA": "{}.b_id".format(self.model.table_name),
+                        "$tableB": "b_book.b_id",
+                    }
                 }
             },
             condition={
