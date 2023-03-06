@@ -17,10 +17,10 @@ class HasCartItems(BusinessModel):
                 "count(cai_id)"
             ],
             condition={
-                "cu_customer.cu_id": {
+                "cu_id": {
                     "$value": str(self.customer_id)
                 }
             }
-        ).show()
+        ).show(True)
 
         return items.result['count'] > 0
