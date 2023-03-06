@@ -3,4 +3,4 @@ from pydantic import BaseModel
 
 class IToken(BaseModel):
     token: str
-    cu_id: int
+    customer_id: int
