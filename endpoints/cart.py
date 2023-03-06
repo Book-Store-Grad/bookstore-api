@@ -1,6 +1,7 @@
-from fastapi import HTTPException
+from fastapi import HTTPException, Depends
 
-from server.application import app
+from server.application import app, oauth_schema
+from src.business_model.auth.decode_token import DecodeToken
 from src.business_model.cart.add_to_cart import AddToCart
 from src.business_model.cart.get_cart_item import GetCartItem
 from src.business_model.cart.get_cart_items import GetCartItems
@@ -14,14 +15,13 @@ CART_TAG = "Cart"
 
 
 @app.get('/cart/all', tags=[CART_TAG])
-def get_cart_items():
-    payload = IToken(
-        token="ghjkl",
-        cu_id=3,
-    )
+def get_cart_items(token: str = Depends(oauth_schema)):
+    payload = DecodeToken(
+        token=token
+    ).run()
 
     items = GetCartItems(
-        payload.cu_id
+        payload.customer_id
     ).run()
 
     return Response(
@@ -35,14 +35,13 @@ def get_cart_items():
 
 
 @app.get('/cart/{cart_item_id}', tags=[CART_TAG])
-def get_cart_item(cart_item_id: int):
-    payload = IToken(
-        token="ghjkl",
-        cu_id=3,
-    )
+def get_cart_item(cart_item_id: int, token: str = Depends(oauth_schema)):
+    payload = DecodeToken(
+        token=token
+    ).run()
 
     item = GetCartItem(
-        payload.cu_id,
+        payload.customer_id,
         cart_item_id=cart_item_id
     ).run()
 
@@ -57,9 +56,13 @@ def get_cart_item(cart_item_id: int):
 
 
 @app.post("/cart", tags=[CART_TAG])
-def add_to_cart(data: IAddToCart):
+def add_to_cart(data: IAddToCart, token: str = Depends(oauth_schema)):
+    payload = DecodeToken(
+        token=token
+    ).run()
+
     is_customer_exists = IsCustomerExists(
-        customer_id=data.customer_id
+        customer_id=payload.customer_id
     ).run()
 
     if not is_customer_exists:
@@ -69,12 +72,12 @@ def add_to_cart(data: IAddToCart):
         )
 
     AddToCart(
-        customer_id=data.customer_id,
+        customer_id=payload.customer_id,
         book_id=data.book_id,
     ).run()
 
     items = GetCartItems(
-        customer_id=data.customer_id
+        customer_id=payload.customer_id
     ).run()
 
     return Response(
@@ -88,9 +91,14 @@ def add_to_cart(data: IAddToCart):
 
 
 @app.delete("/cart/{cart_item_id}", tags=[CART_TAG])
-def remove_to_cart(cart_item_id: int):
+def remove_to_cart(cart_item_id: int, token: str = Depends(oauth_schema)):
+    payload = DecodeToken(
+        token=token
+    ).run()
+
     RemoveFromCart(
         cart_item_id=cart_item_id,
+        customer_id=payload.customer_id
     ).run()
 
     return Response(
