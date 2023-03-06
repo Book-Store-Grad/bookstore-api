@@ -3,9 +3,11 @@ from fastapi.security import OAuth2PasswordRequestForm
 from pydantic import BaseModel
 
 from server.application import app, oauth_schema
+from src.business_model.auth.UpdateForgetPasswordCode import UpdateForgetPasswordCode
 from src.business_model.auth.generate_token import GenerateToken
 from src.business_model.auth.sign_in import SignIn
 from src.business_model.customer.create_customer import CreateCustomer
+from src.business_model.customer.get_customer_by_email import GetCustomerByEmail
 from src.business_model.customer.is_customer_exists_by_email import IsCustomerExistsByEmail
 from src.core.response import Response
 from src.interface.customer import ICustomer
@@ -96,12 +98,22 @@ def signup(user: ISignUp):
 
 
 @app.post('/auth/forget-password', tags=[AUTHENTICATION_TAG])
-def forget_password(token: str = Depends(oauth_schema)):
+def forget_password(data: IForgetPassword):
+    customer_id = GetCustomerByEmail(
+        email=data.email
+    ).run()['cu_id']
+
+    forget_code = UpdateForgetPasswordCode(
+        customer_id=customer_id
+    ).run()
+
     return Response(
-        access_token=token,
+        access_token="",
         status_code=200,
         message="Success",
-        content={}
+        content={
+            "code": forget_code
+        }
     )
 
 
