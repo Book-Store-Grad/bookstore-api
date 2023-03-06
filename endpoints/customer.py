@@ -20,7 +20,7 @@ def get_customer(token: str = Depends(oauth_schema)):
     ).run()
 
     exists = IsCustomerExists(
-        customer_id=payload.cu_id
+        customer_id=payload.customer_id
     )
     if not exists:
         raise HTTPException(
@@ -29,7 +29,7 @@ def get_customer(token: str = Depends(oauth_schema)):
         )
 
     customer = GetCustomer(
-        customer_id=payload.cu_id
+        customer_id=payload.customer_id
     ).run()
 
     return Response(
