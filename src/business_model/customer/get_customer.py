@@ -14,6 +14,13 @@ class GetCustomer(BusinessModel):
 
     def run(self, data: dict = None, conditions: dict = None) -> dict:
         return self.model.get_one(
+            fields=[
+                "cu_id",
+                "cu_name",
+                "cu_email",
+                "cu_role",
+                "cu_created_on",
+            ],
             condition={
                 "cu_id": {
                     "$value": str(self.customer_id)
