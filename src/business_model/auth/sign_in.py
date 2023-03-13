@@ -18,4 +18,10 @@ class SignIn(BusinessModel):
             email=self.email,
         ).run()
 
+        if customer is None:
+            return None
+
+        if customer["cu_password"] != self.password:
+            return None
+
         return customer

@@ -3,11 +3,15 @@ from fastapi.security import OAuth2PasswordRequestForm
 from pydantic import BaseModel
 
 from server.application import app, oauth_schema
-from src.business_model.auth.UpdateForgetPasswordCode import UpdateForgetPasswordCode
+from src.business_model.auth.decode_token import DecodeToken
+from src.business_model.auth.reset_password import ResetPassword
+from src.business_model.auth.update_forget_password_code import UpdateForgetPasswordCode
 from src.business_model.auth.generate_token import GenerateToken
 from src.business_model.auth.sign_in import SignIn
+from src.business_model.auth.update_reset_field import UpdateResetField
 from src.business_model.customer.create_customer import CreateCustomer
 from src.business_model.customer.get_customer_by_email import GetCustomerByEmail
+from src.business_model.customer.get_customer_by_password_code import GetCustomerByPasswordCode
 from src.business_model.customer.is_customer_exists_by_email import IsCustomerExistsByEmail
 from src.core.response import Response
 from src.interface.customer import ICustomer
@@ -26,7 +30,8 @@ class ISignUp(BaseModel):
 
 
 class IResetPassword(BaseModel):
-    reset_token: str
+    code: str
+    password: str
 
 
 class IForgetPassword(BaseModel):
@@ -52,6 +57,12 @@ def signin(user: ISignIn = Depends()):
         email=user.username,
         password=user.password,
     ).run()
+
+    if customer is None:
+        raise HTTPException(
+            detail="Wrong password",
+            status_code=400
+        )
 
     token = GenerateToken(
         customer_id=customer['cu_id'],
@@ -107,6 +118,11 @@ def forget_password(data: IForgetPassword):
         customer_id=customer_id
     ).run()
 
+    UpdateResetField(
+        customer_id=customer_id,
+        value=True
+    )
+
     return Response(
         access_token="",
         status_code=200,
@@ -118,9 +134,26 @@ def forget_password(data: IForgetPassword):
 
 
 @app.post('/auth/reset-password', tags=[AUTHENTICATION_TAG])
-def reset_password(data: IResetPassword, token: str = Depends(oauth_schema)):
+def reset_password(data: IResetPassword,):
+
+    customer = GetCustomerByPasswordCode(
+        code=data.code
+    ).run()
+
+    reset = ResetPassword(
+        code=data.code,
+        password=data.password,
+        customer_id=customer['cu_id'],
+    ).run()
+
+    if reset is not True:
+        raise HTTPException(
+            detail="Reset Password Failed",
+            status_code=400
+        )
+
     return Response(
-        access_token=token,
+        access_token="",
         status_code=200,
         message="Success",
         content={}
