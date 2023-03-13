@@ -19,4 +19,4 @@ def system_environment(filename: str, section: str):
     return db
 
 
-conn_string = system_environment('config.ini', 'postgresql-local')
+conn_string = system_environment('config.ini', 'postgresql-server')
