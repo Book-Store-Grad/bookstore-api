@@ -18,4 +18,6 @@ class IsCustomerExistsByEmail(BusinessModel):
             email=self.email
         ).run()
 
+        customer.pop("cu_password", None)
+
         return len(customer) > 0

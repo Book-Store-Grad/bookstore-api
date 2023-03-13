@@ -24,4 +24,6 @@ class SignIn(BusinessModel):
         if customer["cu_password"] != self.password:
             return None
 
+        customer.pop("cu_password", None)
+
         return customer

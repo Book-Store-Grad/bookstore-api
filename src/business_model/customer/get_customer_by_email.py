@@ -20,6 +20,7 @@ class GetCustomerByEmail(BusinessModel):
                 "cu_email",
                 "cu_role",
                 "cu_created_on",
+                "cu_password",
             ],
             condition={
                 "cu_email": {
