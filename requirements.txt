@@ -4,3 +4,4 @@ pydantic==1.10.5
 databaser==0.9.44
 uvicorn==0.17.6
 starlette==0.19.1
+PyJWT==2.4.0
