@@ -18,6 +18,7 @@ class IsCustomerExistsByEmail(BusinessModel):
             email=self.email
         ).run()
 
-        customer.pop("cu_password", None)
+        if isinstance(customer, dict):
+            customer.pop("cu_password", None)
 
         return len(customer) > 0
