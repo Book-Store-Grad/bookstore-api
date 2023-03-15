@@ -26,7 +26,7 @@ class ISignUp(BaseModel):
     name: str
     email: str
     password: str
-    gender: bool
+    gender: str
 
 
 class IResetPassword(BaseModel):

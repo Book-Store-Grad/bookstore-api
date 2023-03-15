@@ -18,6 +18,6 @@ class CreateCustomer(BusinessModel):
                 "cu_name": self.customer.name,
                 "cu_email": self.customer.email,
                 "cu_password": self.customer.password,
-                "cu_gender": str(self.customer.gender),
+                "cu_gender": str(False) if self.customer.gender == "F" else str(True),
             }
         ).result
