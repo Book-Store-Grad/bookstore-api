@@ -13,7 +13,7 @@ class CreateCustomer(BusinessModel):
         self.customer = customer
 
     def run(self, data: dict = None, conditions: dict = None) -> dict:
-        return super().run(
+        customer = super().run(
             data={
                 "cu_name": self.customer.name,
                 "cu_email": self.customer.email,
@@ -21,3 +21,8 @@ class CreateCustomer(BusinessModel):
                 "cu_gender": str(False) if self.customer.gender == "F" else str(True),
             }
         ).result
+
+        customer.pop("cu_password", None)
+        customer.pop("cu_pw_code", None)
+
+        return customer
