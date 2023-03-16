@@ -13,12 +13,19 @@ class CreateCustomer(BusinessModel):
         self.customer = customer
 
     def run(self, data: dict = None, conditions: dict = None) -> dict:
+        if self.customer.gender.lower() in ["f", "female"]:
+            gender = False
+        elif self.customer.gender.lower() in ["m", "male"]:
+            gender = True
+        else:
+            raise Exception("Gender not correctly specified, only M or F is accepted")
+
         customer = super().run(
             data={
                 "cu_name": self.customer.name,
                 "cu_email": self.customer.email,
                 "cu_password": self.customer.password,
-                "cu_gender": str(False) if self.customer.gender == "F" else str(True),
+                "cu_gender": str(gender),
             }
         ).result
 

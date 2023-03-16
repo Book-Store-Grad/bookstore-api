@@ -90,9 +90,15 @@ def signup(user: ISignUp):
             status_code=400
         )
 
-    customer = CreateCustomer(
-        customer=ICustomer(**user.__dict__)
-    ).run()
+    try:
+        customer = CreateCustomer(
+            customer=ICustomer(**user.__dict__)
+        ).run()
+    except Exception as error_message:
+        raise HTTPException(
+            detail=error_message,
+            status_code=422
+        )
 
     token = GenerateToken(
         customer_id=customer['cu_id'],
