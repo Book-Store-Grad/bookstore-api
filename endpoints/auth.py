@@ -116,9 +116,15 @@ def signup(user: ISignUp):
 
 @app.post('/auth/forget-password', tags=[AUTHENTICATION_TAG])
 def forget_password(data: IForgetPassword):
-    customer_id = GetCustomerByEmail(
-        email=data.email
-    ).run()['cu_id']
+    try:
+        customer_id = GetCustomerByEmail(
+            email=data.email
+        ).run()['cu_id']
+    except Exception as error_message:
+        raise HTTPException(
+            detail="Customer does not exist",
+            status_code=422
+        )
 
     forget_code = UpdateForgetPasswordCode(
         customer_id=customer_id
