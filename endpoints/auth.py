@@ -116,10 +116,12 @@ def signup(user: ISignUp):
 
 @app.post('/auth/forget-password', tags=[AUTHENTICATION_TAG])
 def forget_password(data: IForgetPassword):
+    customer = GetCustomerByEmail(
+        email=data.email
+    ).run()
+
     try:
-        customer_id = GetCustomerByEmail(
-            email=data.email
-        ).run()['cu_id']
+        customer_id = customer['cu_id']
     except Exception as error_message:
         raise HTTPException(
             detail="Customer does not exist",
@@ -146,8 +148,7 @@ def forget_password(data: IForgetPassword):
 
 
 @app.post('/auth/reset-password', tags=[AUTHENTICATION_TAG])
-def reset_password(data: IResetPassword,):
-
+def reset_password(data: IResetPassword, ):
     customer = GetCustomerByPasswordCode(
         code=data.code
     ).run()
