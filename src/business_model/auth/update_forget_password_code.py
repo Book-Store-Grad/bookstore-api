@@ -1,4 +1,4 @@
-from random import random
+import random
 
 from src.core.business_model import BusinessModel, ModelType
 from src.data_model.customer import Customer
@@ -14,7 +14,9 @@ class UpdateForgetPasswordCode(BusinessModel):
         self.customer_id = customer_id
 
     def run(self, data: dict = None, conditions: dict = None):
-        code = int(random() * 10000)
+        code = random.randrange(1000, 9999)
+
+        print("code: ", code)
 
         self.model.update(
             conditions={
