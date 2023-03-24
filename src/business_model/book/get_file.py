@@ -4,12 +4,12 @@ import shutil
 from fastapi import UploadFile
 
 
-class GetBookImage:
+class GetBookFile:
     def __init__(self, book_id: int):
         self.book_id = book_id
 
     def run(self):
-        file_path = os.path.join("static", str(self.book_id) + ".jpg")
+        file_path = os.path.join(os.path.join("static", "file"), str(self.book_id) + ".pdf")
 
         if not os.path.exists(file_path):
             return None

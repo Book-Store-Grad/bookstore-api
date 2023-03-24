@@ -6,6 +6,7 @@ from src.business_model.book.create_book import CreateBook
 from src.business_model.book.delete_book import DeleteBook
 from src.business_model.book.get_book import GetBook
 from src.business_model.book.get_books import GetBooks
+from src.business_model.book.get_file import GetBookFile
 from src.business_model.book.get_image import GetBookImage
 from src.business_model.book.update_book import UpdateBook
 from src.business_model.book.upload_file import UploadBookFile
@@ -50,9 +51,46 @@ def get_book_image(book_id: int):
             status_code=404
         )
 
-    return FileResponse(
-        image,
-    )
+    try:
+        return FileResponse(
+            image,
+        )
+    except:
+        raise HTTPException(
+            detail="Book image does not exist",
+            status_code=404
+        )
+
+
+@app.get("/book/{book_id}/file", tags=[TAG])
+def get_book_file(book_id: int):
+    try:
+        book_id = int(book_id)
+    except:
+        raise HTTPException(
+            detail="Book id must be a valid int",
+            status_code=400
+        )
+
+    image = GetBookFile(
+        book_id=book_id
+    ).run()
+
+    if image is None:
+        raise HTTPException(
+            detail="Book file does not exist",
+            status_code=404
+        )
+
+    try:
+        return FileResponse(
+            image,
+        )
+    except:
+        raise HTTPException(
+            detail="Book file does not exist",
+            status_code=404
+        )
 
 
 @app.get("/book/{book_id}", tags=[TAG])
@@ -81,7 +119,6 @@ def get_book(book_id: int):
 
 @app.post("/book", tags=[TAG])
 def create_book(book: IEditBook):
-
     CreateBook(
         book=book
     ).run()
