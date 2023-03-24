@@ -6,6 +6,7 @@ from src.business_model.book.delete_book import DeleteBook
 from src.business_model.book.get_book import GetBook
 from src.business_model.book.get_books import GetBooks
 from src.business_model.book.update_book import UpdateBook
+from src.business_model.book.upload_file import UploadBookFile
 from src.business_model.book.upload_image import UploadImage
 from src.core.response import Response
 from view.book import IEditBook
@@ -85,10 +86,10 @@ def upload_book_file(book_id: int, file: UploadFile = File(...)):
             status_code=400
         )
 
-    # UploadBookFile(
-    #     book_id=book_id,
-    #     file=file
-    # ).run()
+    UploadBookFile(
+        book_id=book_id,
+        file=file
+    ).run()
 
     return Response(
         access_token="",
