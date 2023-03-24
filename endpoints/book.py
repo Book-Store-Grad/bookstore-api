@@ -1,4 +1,4 @@
-from fastapi import HTTPException
+from fastapi import HTTPException, UploadFile, File
 
 from server.application import app
 from src.business_model.book.create_book import CreateBook
@@ -6,13 +6,14 @@ from src.business_model.book.delete_book import DeleteBook
 from src.business_model.book.get_book import GetBook
 from src.business_model.book.get_books import GetBooks
 from src.business_model.book.update_book import UpdateBook
+from src.business_model.book.upload_image import UploadImage
 from src.core.response import Response
 from view.book import IEditBook
 
-CART_TAG = "Book"
+TAG = "Book"
 
 
-@app.get("/book/all", tags=[CART_TAG])
+@app.get("/book/all", tags=[TAG])
 def get_all_books():
     books = GetBooks().run()
 
@@ -26,7 +27,7 @@ def get_all_books():
     )
 
 
-@app.get("/book/{book_id}", tags=[CART_TAG])
+@app.get("/book/{book_id}", tags=[TAG])
 def get_book(book_id: int):
     try:
         book_id = int(book_id)
@@ -50,7 +51,7 @@ def get_book(book_id: int):
     )
 
 
-@app.post("/book", tags=[CART_TAG])
+@app.post("/book", tags=[TAG])
 def create_book(book: IEditBook):
 
     CreateBook(
@@ -65,7 +66,65 @@ def create_book(book: IEditBook):
     )
 
 
-@app.put("/book/{book_id}", tags=[CART_TAG])
+@app.post("/book/{book_id}/file", tags=[TAG])
+def upload_book_file(book_id: int, file: UploadFile = File(...)):
+    try:
+        book_id = int(book_id)
+    except:
+        raise HTTPException(
+            detail="Book id must be a valid int",
+            status_code=400
+        )
+
+    print("File:", file.filename)
+    print("File:", file.content_type)
+
+    if file.content_type != "application/pdf":
+        raise HTTPException(
+            detail="File must be a pdf",
+            status_code=400
+        )
+
+    # UploadBookFile(
+    #     book_id=book_id,
+    #     file=file
+    # ).run()
+
+    return Response(
+        access_token="",
+        status_code=200,
+        message="Success",
+        content={}
+    )
+
+
+@app.post("/book/{book_id}/image", tags=[TAG])
+def upload_book_image(book_id: int, image: UploadFile = File(...)):
+    try:
+        book_id = int(book_id)
+    except:
+        raise HTTPException(
+            detail="Book id must be a valid int",
+            status_code=400
+        )
+
+    print("Image:", image.filename)
+    print("Image:", image.content_type)
+
+    UploadImage(
+        book_id=book_id,
+        image=image
+    ).run()
+
+    return Response(
+        access_token="",
+        status_code=200,
+        message="Success",
+        content={}
+    )
+
+
+@app.put("/book/{book_id}", tags=[TAG])
 def update_book(book_id: int, book: IEditBook):
     try:
         book_id = int(book_id)
@@ -88,7 +147,7 @@ def update_book(book_id: int, book: IEditBook):
     )
 
 
-@app.delete('/book/{book_id}', tags=[CART_TAG])
+@app.delete('/book/{book_id}', tags=[TAG])
 def delete_book(book_id: int):
     try:
         book_id = int(book_id)
