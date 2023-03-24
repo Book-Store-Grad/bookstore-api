@@ -25,7 +25,9 @@ class UpdateForgetPasswordCode(BusinessModel):
                     "$value": int(self.customer_id)
                 }
             }
-        ).get_one().show(True)
+        ).get_one().show(True).result
+
+        print("customer: ", customer)
 
         is_email_sent = SendEmail(
             email="",

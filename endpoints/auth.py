@@ -132,6 +132,12 @@ def forget_password(data: IForgetPassword):
         customer_id=customer_id
     ).run()
 
+    if forget_code is False:
+        raise HTTPException(
+            detail="Forget Password Failed",
+            status_code=400
+        )
+
     UpdateResetField(
         customer_id=customer_id,
         value=True
