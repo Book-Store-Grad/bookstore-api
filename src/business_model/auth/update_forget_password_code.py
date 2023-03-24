@@ -1,5 +1,6 @@
 import random
 
+from src.business_model.email.SendEmail import SendEmail
 from src.core.business_model import BusinessModel, ModelType
 from src.data_model.customer import Customer
 
@@ -17,6 +18,26 @@ class UpdateForgetPasswordCode(BusinessModel):
         code = random.randrange(1000, 9999)
 
         print("code: ", code)
+
+        customer = self.model.get(
+            condition={
+                "cu_id": {
+                    "$value": int(self.customer_id)
+                }
+            }
+        ).get_one().show(True)
+
+        is_email_sent = SendEmail(
+            email="",
+            password=""
+        ).send_email(
+            to=customer["cu_email"],
+            subject="Forget Password",
+            contents="Your code is: " + str(code)
+        )
+
+        if not is_email_sent:
+            return False
 
         self.model.update(
             conditions={
