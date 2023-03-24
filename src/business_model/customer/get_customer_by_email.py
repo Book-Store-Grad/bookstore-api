@@ -18,6 +18,7 @@ class GetCustomerByEmail(BusinessModel):
                 "cu_id",
                 "cu_name",
                 "cu_email",
+                "cu_gender",
                 "cu_role",
                 "cu_created_on",
                 "cu_password",
