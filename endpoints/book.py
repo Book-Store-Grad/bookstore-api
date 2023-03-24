@@ -1,10 +1,12 @@
 from fastapi import HTTPException, UploadFile, File
+from starlette.responses import FileResponse
 
 from server.application import app
 from src.business_model.book.create_book import CreateBook
 from src.business_model.book.delete_book import DeleteBook
 from src.business_model.book.get_book import GetBook
 from src.business_model.book.get_books import GetBooks
+from src.business_model.book.get_image import GetBookImage
 from src.business_model.book.update_book import UpdateBook
 from src.business_model.book.upload_file import UploadBookFile
 from src.business_model.book.upload_image import UploadImage
@@ -25,6 +27,31 @@ def get_all_books():
         content={
             "books": books,
         }
+    )
+
+
+@app.get("/book/{book_id}/image", tags=[TAG])
+def get_book_image(book_id: int):
+    try:
+        book_id = int(book_id)
+    except:
+        raise HTTPException(
+            detail="Book id must be a valid int",
+            status_code=400
+        )
+
+    image = GetBookImage(
+        book_id=book_id
+    ).run()
+
+    if image is None:
+        raise HTTPException(
+            detail="Book image does not exist",
+            status_code=404
+        )
+
+    return FileResponse(
+        image,
     )
 
 
