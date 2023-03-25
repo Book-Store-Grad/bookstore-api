@@ -37,7 +37,7 @@ class BusinessModel:
 
             del exists
 
-        if self.model_type.value in [ModelType.insert, ModelType.update]:
+        if self.model_type.value in [ModelType.insert]:
             insert = self.model.insert(data=data).get_one(order_by={self.model.fields[0].name: "DESC"})
             print("INSERT SQL:", insert.get_transactions())
             return insert.show(True)
@@ -49,7 +49,7 @@ class BusinessModel:
             return self.model.update(
                 data=data,
                 conditions=conditions,
-            ).commit()
+            ).get_one(condition=conditions, order_by={self.model.fields[0].name: "DESC"}).show(True)
 
         if self.model_type.value == ModelType.delete:
             return self.model.delete(

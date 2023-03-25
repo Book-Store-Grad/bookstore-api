@@ -13,11 +13,12 @@ class GetCustomer(BusinessModel):
         self.customer_id = customer_id
 
     def run(self, data: dict = None, conditions: dict = None) -> dict:
-        return self.model.get_one(
+        customer = self.model.get_one(
             fields=[
                 "cu_id",
                 "cu_name",
                 "cu_email",
+                "cu_gender",
                 "cu_role",
                 "cu_created_on",
             ],
@@ -27,3 +28,7 @@ class GetCustomer(BusinessModel):
                 }
             }
         ).show(True).result
+
+        customer['cu_gender'] = "male" if str(customer['cu_gender']).lower() == "true" else "female"
+
+        return customer
