@@ -95,8 +95,9 @@ def signup(user: ISignUp):
             customer=ICustomer(**user.__dict__)
         ).run()
     except Exception as error_message:
+        print("error_message: ", error_message)
         raise HTTPException(
-            detail=error_message,
+            detail="Customer Creation Failed",
             status_code=422
         )
 
@@ -120,6 +121,8 @@ def forget_password(data: IForgetPassword):
         email=data.email
     ).run()
 
+    print("Email: ", data.email, "Customer: ", customer)
+
     try:
         customer_id = customer['cu_id']
     except Exception as error_message:
@@ -129,7 +132,7 @@ def forget_password(data: IForgetPassword):
         )
 
     forget_code = UpdateForgetPasswordCode(
-        customer_id=customer_id
+        customer=customer
     ).run()
 
     if forget_code is False:

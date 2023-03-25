@@ -6,34 +6,27 @@ from src.data_model.customer import Customer
 
 
 class UpdateForgetPasswordCode(BusinessModel):
-    def __init__(self, customer_id: int):
+    def __init__(self, customer: dict):
         super().__init__(
             model=Customer(),
             model_type=ModelType.update
         )
 
-        self.customer_id = customer_id
+        self.customer = customer
 
     def run(self, data: dict = None, conditions: dict = None):
         code = random.randrange(1000, 9999)
 
         print("code: ", code)
 
-        customer = self.model.get(
-            condition={
-                "cu_id": {
-                    "$value": int(self.customer_id)
-                }
-            }
-        ).get_one().show(True).result
-
-        print("customer: ", customer)
+        print("customer: ", self.customer)
 
         is_email_sent = SendEmail(
-            email="",
-            password=""
+            email="bookstoreapi052@gmail.com",
+            # password="191319712345"
+            password="scimqczuqdpevzau"
         ).send_email(
-            to=customer["cu_email"],
+            to=self.customer["cu_email"],
             subject="Forget Password",
             contents="Your code is: " + str(code)
         )
@@ -44,7 +37,7 @@ class UpdateForgetPasswordCode(BusinessModel):
         self.model.update(
             conditions={
                 "cu_id": {
-                    "$value": int(self.customer_id)
+                    "$value": int(self.customer['cu_id'])
                 }
             },
             data={
