@@ -1,12 +1,14 @@
 import os
 
-from fastapi import HTTPException, Depends
+from fastapi import HTTPException, Depends, File, UploadFile
 from starlette.responses import FileResponse
 
 from server.application import app, oauth_schema
 from src.business_model.auth.decode_token import DecodeToken
 from src.business_model.customer.get_customer import GetCustomer
+from src.business_model.customer.get_image import GetCustomerImage
 from src.business_model.customer.is_customer_exists import IsCustomerExists
+from src.business_model.customer.upload_image import UploadImage
 from src.core.response import Response
 from src.interface.token import IToken
 
@@ -42,10 +44,39 @@ def get_customer(token: str = Depends(oauth_schema)):
     )
 
 
+@app.put("/customer/profile", tags=[CUSTOMER_TAG])
+def update_customer(token: str = Depends(oauth_schema)):
+    pass
+
+
+@app.post("/customer/image", tags=[CUSTOMER_TAG])
+def update_image(image: UploadFile = File(...), token: str = Depends(oauth_schema)):
+    payload = DecodeToken(
+        token=token
+    ).run()
+
+    UploadImage(
+        image=image,
+        customer_id=payload.customer_id
+    ).run()
+
+    return Response(
+        access_token=token,
+        status_code=200,
+        message="",
+        content={},
+    )
+
+
+
 @app.get('/customer/image', tags=[CUSTOMER_TAG])
 def get_image(token: str = Depends(oauth_schema)):
     payload = DecodeToken(
         token=token
     ).run()
-    # TODO: Get Image path
-    return FileResponse("")
+
+    image_path = GetCustomerImage(
+        customer_id=payload.customer_id
+    ).run()
+
+    return FileResponse(image_path)
