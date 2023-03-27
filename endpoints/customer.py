@@ -28,7 +28,7 @@ def get_customer(token: str = Depends(oauth_schema)):
     )
     if not exists:
         raise HTTPException(
-            detail="Customer does not exist",
+            detail="User does not exist",
             status_code=400
         )
 
@@ -59,7 +59,7 @@ def update_customer(customer: IUpdateCustomer, token: str = Depends(oauth_schema
     )
     if not exists:
         raise HTTPException(
-            detail="Customer does not exist",
+            detail="User does not exist",
             status_code=400
         )
 

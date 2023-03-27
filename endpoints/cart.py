@@ -67,7 +67,7 @@ def add_to_cart(data: IAddToCart, token: str = Depends(oauth_schema)):
 
     if not is_customer_exists:
         raise HTTPException(
-            detail="Customer Id does not exist",
+            detail="User Id does not exist",
             status_code=400
         )
 
