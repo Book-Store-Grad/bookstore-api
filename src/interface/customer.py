@@ -8,6 +8,7 @@ class ICustomer(BaseModel):
     email: str
     password: str
     gender: str
+    role: str = "customer"
 
 
 class IUpdateCustomer(BaseModel):
