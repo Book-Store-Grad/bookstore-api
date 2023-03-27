@@ -145,7 +145,19 @@ def create_book(book: IEditBook, token: str = Depends(oauth_schema)):
 
 
 @app.post("/book/{book_id}/file", tags=[TAG])
-def upload_book_file(book_id: int, file: UploadFile = File(...)):
+def upload_book_file(book_id: int, file: UploadFile = File(...), token: str = Depends(oauth_schema)):
+    payload = DecodeToken(
+        token
+    ).run()
+
+    print("Payload:", payload)
+
+    if payload.role.lower() != 'author':
+        raise HTTPException(
+            detail="User not authorized",
+            status_code=401
+        )
+
     try:
         book_id = int(book_id)
     except:
@@ -177,7 +189,19 @@ def upload_book_file(book_id: int, file: UploadFile = File(...)):
 
 
 @app.post("/book/{book_id}/image", tags=[TAG])
-def upload_book_image(book_id: int, image: UploadFile = File(...)):
+def upload_book_image(book_id: int, image: UploadFile = File(...), token: str = Depends(oauth_schema)):
+    payload = DecodeToken(
+        token
+    ).run()
+
+    print("Payload:", payload)
+
+    if payload.role.lower() != 'author':
+        raise HTTPException(
+            detail="User not authorized",
+            status_code=401
+        )
+
     try:
         book_id = int(book_id)
     except:
