@@ -27,6 +27,7 @@ class ISignUp(BaseModel):
     email: str
     password: str
     gender: str
+    role: str = "customer"
 
 
 class IResetPassword(BaseModel):
@@ -49,7 +50,7 @@ def signin(user: ISignIn = Depends()):
 
     if not exists:
         raise HTTPException(
-            detail="Customer does not exist",
+            detail="User does not exist",
             status_code=400
         )
 
@@ -81,13 +82,20 @@ def signin(user: ISignIn = Depends()):
 
 @app.post('/auth/signup', tags=[AUTHENTICATION_TAG])
 def signup(user: ISignUp):
+
+    if user.role not in ['customer', 'author']:
+        raise HTTPException(
+            detail="Role must be either customer or author",
+            status_code=400
+        )
+
     exists = IsCustomerExistsByEmail(
         email=user.email
     ).run()
 
     if exists:
         raise HTTPException(
-            detail="Customer Already Exists",
+            detail="User Already Exists",
             status_code=400
         )
 
@@ -98,7 +106,7 @@ def signup(user: ISignUp):
     except Exception as error_message:
         print("error_message: ", error_message)
         raise HTTPException(
-            detail="Customer Creation Failed",
+            detail="User Creation Failed",
             status_code=422
         )
 
@@ -129,7 +137,7 @@ def forget_password(data: IForgetPassword):
         customer_id = customer['cu_id']
     except Exception as error_message:
         raise HTTPException(
-            detail="Customer does not exist",
+            detail="User does not exist",
             status_code=422
         )
 
