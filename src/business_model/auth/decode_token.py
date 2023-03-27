@@ -33,4 +33,5 @@ class DecodeToken:
         return IToken(
             token=self.token,
             customer_id=customer_id,
+            role="customer" if payload['role'] is None or payload['role'] == '' else payload['role']
         )
