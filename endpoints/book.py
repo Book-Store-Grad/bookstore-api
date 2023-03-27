@@ -1,7 +1,8 @@
-from fastapi import HTTPException, UploadFile, File
+from fastapi import HTTPException, UploadFile, File, Depends
 from starlette.responses import FileResponse
 
-from server.application import app
+from server.application import app, oauth_schema
+from src.business_model.auth.decode_token import DecodeToken
 from src.business_model.book.create_book import CreateBook
 from src.business_model.book.delete_book import DeleteBook
 from src.business_model.book.get_book import GetBook
@@ -118,7 +119,19 @@ def get_book(book_id: int):
 
 
 @app.post("/book", tags=[TAG])
-def create_book(book: IEditBook):
+def create_book(book: IEditBook, token: str = Depends(oauth_schema)):
+    payload = DecodeToken(
+        token
+    ).run()
+
+    print("Payload:", payload)
+
+    if payload.role.lower() != 'author':
+        raise HTTPException(
+            detail="User not authorized",
+            status_code=401
+        )
+
     CreateBook(
         book=book
     ).run()
@@ -190,7 +203,19 @@ def upload_book_image(book_id: int, image: UploadFile = File(...)):
 
 
 @app.put("/book/{book_id}", tags=[TAG])
-def update_book(book_id: int, book: IEditBook):
+def update_book(book_id: int, book: IEditBook, token: str = Depends(oauth_schema)):
+    payload = DecodeToken(
+        token
+    ).run()
+
+    print("Payload:", payload)
+
+    if payload.role.lower() != 'author':
+        raise HTTPException(
+            detail="User not authorized",
+            status_code=401
+        )
+
     try:
         book_id = int(book_id)
     except:
@@ -213,7 +238,19 @@ def update_book(book_id: int, book: IEditBook):
 
 
 @app.delete('/book/{book_id}', tags=[TAG])
-def delete_book(book_id: int):
+def delete_book(book_id: int, token: str = Depends(oauth_schema)):
+    payload = DecodeToken(
+        token
+    ).run()
+
+    print("Payload:", payload)
+
+    if payload.role.lower() != 'author':
+        raise HTTPException(
+            detail="User not authorized",
+            status_code=401
+        )
+
     try:
         book_id = int(book_id)
     except:

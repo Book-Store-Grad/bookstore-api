@@ -66,6 +66,7 @@ def signin(user: ISignIn = Depends()):
 
     token = GenerateToken(
         customer_id=customer['cu_id'],
+        role=str(customer['cu_role']).lower()
     ).run()
 
     return Response(
@@ -103,6 +104,7 @@ def signup(user: ISignUp):
 
     token = GenerateToken(
         customer_id=customer['cu_id'],
+        role=customer['cu_role']
     ).run()
 
     return Response(
