@@ -26,6 +26,7 @@ class CreateCustomer(BusinessModel):
                 "cu_email": self.customer.email,
                 "cu_password": self.customer.password,
                 "cu_gender": str(gender),
+                "cu_role": str(self.customer.role),
             }
         ).result
 
