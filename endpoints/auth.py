@@ -83,6 +83,8 @@ def signin(user: ISignIn = Depends()):
 @app.post('/auth/signup', tags=[AUTHENTICATION_TAG])
 def signup(user: ISignUp):
 
+    print("User:", user.__dict__)
+
     if user.role not in ['customer', 'author']:
         raise HTTPException(
             detail="Role must be either customer or author",
