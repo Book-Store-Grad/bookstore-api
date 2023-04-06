@@ -14,7 +14,7 @@ class UploadBookFile:
         file_path = "static/file/" + str(self.book_id)+".{}".format(self.file.filename.split(".")[-1])
 
         if not os.path.exists("static/file"):
-            os.mkdir("static/file")
+            os.makedirs("static/file")
 
         if os.path.exists(file_path):
             os.remove(file_path)
