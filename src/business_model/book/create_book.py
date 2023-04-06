@@ -14,7 +14,7 @@ class CreateBook(BusinessModel):
         )
 
     def run(self, data: dict = None, conditions: dict = None) -> dict:
-        return super().run(
+        create = super().run(
             data={
                 "b_name": self.book.name,
                 "b_price": self.book.price,
@@ -22,3 +22,5 @@ class CreateBook(BusinessModel):
                 "b_description": self.book.description,
             }
         ).result
+
+        return create

@@ -132,7 +132,7 @@ def create_book(book: IEditBook, token: str = Depends(oauth_schema)):
             status_code=401
         )
 
-    CreateBook(
+    book = CreateBook(
         book=book
     ).run()
 
@@ -140,7 +140,9 @@ def create_book(book: IEditBook, token: str = Depends(oauth_schema)):
         access_token="",
         status_code=200,
         message="Success",
-        content={}
+        content={
+            "book": book,
+        },
     )
 
 
