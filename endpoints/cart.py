@@ -96,14 +96,18 @@ def remove_to_cart(cart_item_id: int, token: str = Depends(oauth_schema)):
         token=token
     ).run()
 
-    RemoveFromCart(
+    cart = RemoveFromCart(
         cart_item_id=cart_item_id,
         customer_id=payload.customer_id
     ).run()
+
+    print("cart Item id", cart_item_id, "customer id", payload.customer_id)
 
     return Response(
         access_token="",
         message="",
         status_code=200,
-        content={},
+        content={
+            "cart": cart
+        },
     )

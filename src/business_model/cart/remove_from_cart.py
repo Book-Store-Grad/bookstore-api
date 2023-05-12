@@ -13,9 +13,6 @@ class RemoveFromCart(BusinessModel):
         self.customer_id = customer_id
 
     def run(self, data: dict = None, conditions: dict = None) -> dict:
-        return super().run(
-            conditions={
-                "cu_id": self.customer_id,
-                "b_id": self.cart_item_id,
-            }
-        ).result
+        return self.model.add_transaction(
+            """DELETE FROM ca_cart_items where cai_id = '{}';""".format(self.cart_item_id)
+        ).commit().result
