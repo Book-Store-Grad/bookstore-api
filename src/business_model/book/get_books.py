@@ -12,4 +12,14 @@ class GetBooks(BusinessModel):
         )
 
     def run(self, data: dict = None, conditions: dict = None) -> list:
-        return self.model.get().show().result
+        # Add field is_favorite
+        # Add is_owned
+        # Add is_free
+        sql = """
+            select
+                CASE WHEN b_price = '0' THEN True ELSE CASE WHEN b_price = '' THEN True ELSE FALSE END END as is_free,
+                b_id in (select b_id from ca_cart_items where cu_id = 25) as is_owned,
+                *
+            from b_book ;
+        """
+        return self.model.add_transaction(sql).show().result
