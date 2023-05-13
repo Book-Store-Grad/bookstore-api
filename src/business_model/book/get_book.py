@@ -23,4 +23,8 @@ class GetBook(BusinessModel):
             where b_id = '{}';
         """.format(self.book_id)
 
-        return self.model.add_transaction(sql).show(True).result
+        book = self.model.add_transaction(sql).show(True).result
+
+        book['cover_image_url'] = '/book/{}/image'.format(self.book_id)
+
+        return book
