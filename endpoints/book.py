@@ -295,3 +295,19 @@ def delete_book(book_id: int, token: str = Depends(oauth_schema)):
         message="Success",
         content={},
     )
+
+
+@app.get('/search', tags=[TAG])
+def search_books(query: str):
+    books = GetBooks(
+        query=query
+    ).run()
+
+    return Response(
+        access_token="",
+        status_code=200,
+        message="",
+        content={
+            "books": books,
+        }
+    )
