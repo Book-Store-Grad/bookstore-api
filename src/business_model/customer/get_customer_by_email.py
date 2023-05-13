@@ -13,7 +13,7 @@ class GetCustomerByEmail(BusinessModel):
         self.email = email
 
     def run(self, data: dict = None, conditions: dict = None) -> dict:
-        return self.model.get_one(
+        customer = self.model.get_one(
             fields=[
                 "cu_id",
                 "cu_name",
@@ -29,3 +29,11 @@ class GetCustomerByEmail(BusinessModel):
                 }
             }
         ).show(True).result
+
+        gender = 'male'
+        if not customer['cu_gender']:
+            gender = 'female'
+
+        customer['cu_gender'] = gender
+
+        return customer
