@@ -14,10 +14,13 @@ class GetBook(BusinessModel):
         self.book_id = book_id
 
     def run(self, data: dict = None, conditions: dict = None) -> dict:
-        return self.model.get(
-            condition={
-                "b_id": {
-                    "$value": str(self.book_id)
-                }
-            }
-        ).show(True).result
+        sql = """
+            select 
+                CASE WHEN b_price = '0' THEN True ELSE CASE WHEN b_price = '' THEN True ELSE FALSE END END as is_free,
+                b_id in (select b_id from ca_cart_items where cu_id = 25) as is_owned,
+                *
+            from b_book
+            where b_id = '{}';
+        """.format(self.book_id)
+
+        return self.model.add_transaction(sql).show(True).result
