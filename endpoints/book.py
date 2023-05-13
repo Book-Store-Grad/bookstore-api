@@ -19,8 +19,24 @@ TAG = "Book"
 
 
 @app.get("/book/all", tags=[TAG])
-def get_all_books():
-    books = GetBooks().run()
+def get_all_books(category: str = None, author_id: str = None, query: str = None):
+
+    if author_id:
+        try:
+            author_id = int(author_id)
+        except:
+            raise HTTPException(
+                detail="Author id must be a valid int",
+                status_code=400
+            )
+
+    print("category", category, "author_id", author_id)
+
+    books = GetBooks(
+        category=category,
+        author_id=author_id,
+        query=query
+    ).run()
 
     return Response(
         access_token="",
