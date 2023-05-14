@@ -15,6 +15,7 @@ from config import conn_string
 from src.data_model.book import Book
 from src.data_model.cart import CartItem
 from src.data_model.customer import Customer
+from src.data_model.favorite import Favorite
 from src.data_model.order import Order
 
 
@@ -29,6 +30,7 @@ tables: List[DataModel] = [
     Customer(),
     Order(),
     CartItem(),
+    Favorite(),
 ]
 
 
@@ -72,6 +74,7 @@ def run(postgres_config: dict):
             drop_table(table)
 
     for table in tables:
+        print("Create Table:", table.table_name)
         create_table(table)
 
     create_local_functions()
