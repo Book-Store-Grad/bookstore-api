@@ -24,6 +24,7 @@ class UpdateBook(BusinessModel):
                 "b_genre": self.data.genre,
                 "b_price": self.data.price,
                 "b_description": self.data.description,
+                "a_id": self.data.author_id,
             },
             conditions={
                 "b_id": {

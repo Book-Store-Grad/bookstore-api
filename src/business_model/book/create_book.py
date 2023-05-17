@@ -20,6 +20,7 @@ class CreateBook(BusinessModel):
                 "b_price": self.book.price,
                 "b_genre": self.book.genre,
                 "b_description": self.book.description,
+                "a_id": self.book.author_id,
             }
         ).result
 
