@@ -24,7 +24,7 @@ class GetAuthors(BusinessModel):
         if self.query:
             has_condition = "where "
             if self.query:
-                conditions.append(f"b_name LIKE '{self.query}%'")
+                conditions.append(f"a_name LIKE '{self.query}%'")
 
         conditions = "AND ".join(conditions)
 
