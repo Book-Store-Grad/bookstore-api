@@ -15,6 +15,7 @@ class Book(DataModel):
             TableField(name='b_description', data_type=DataType.CHARACTER_VARYING.value),
             TableField(name='b_genre', data_type=DataType.CHARACTER_VARYING.value),
             TableField(name='b_price', data_type=DataType.CHARACTER_VARYING.value),
+            TableField(name='a_id', data_type=DataType.INTEGER.value),
             TableField(name='b_created_on', data_type=DataType.TIMESTAMPTZ.value, default="CURRENT_TIMESTAMP"),
         ]
 

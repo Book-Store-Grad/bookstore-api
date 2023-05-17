@@ -33,7 +33,7 @@ class GetBooks(BusinessModel):
                 conditions.append(f"b_genre = '{self.category}'")
 
             if self.author_id:
-                conditions.append(f"b_author_id = {self.author_id}")
+                conditions.append(f"a_id = {self.author_id}")
 
             if self.query:
                 conditions.append(f"b_name LIKE '{self.query}%'")

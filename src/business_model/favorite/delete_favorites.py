@@ -11,7 +11,7 @@ class DeleteFavorite(BusinessModel):
             model=Favorite()
         )
 
-    def run(self):
+    def run(self, data: dict = None, condition: dict = None):
         favorite = self.model.delete(
             conditions={
                 "fa_id": {

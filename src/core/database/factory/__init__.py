@@ -12,6 +12,7 @@ from databaser.pgsql import TableStructure, DatabaseStructure
 from databaser.transaction import Transaction
 
 from config import conn_string
+from src.data_model.author import Author
 from src.data_model.book import Book
 from src.data_model.cart import CartItem
 from src.data_model.customer import Customer
@@ -26,6 +27,7 @@ def create_table(model: DataModel) -> ExecutionResult:
 
 
 tables: List[DataModel] = [
+    Author(),
     Book(),
     Customer(),
     Order(),
