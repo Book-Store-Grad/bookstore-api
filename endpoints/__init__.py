@@ -6,4 +6,5 @@ from . import customer
 from . import cart
 from . import order
 from . import favorite
+from . import author
 

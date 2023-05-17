@@ -16,7 +16,7 @@ if __name__ == '__main__':
     if debug_mode:
         print("Postgres", postgres)
 
-    print("Init all database tables")
+    print("Init all database tables:", int(postgres_config['initiate_db']))
     if int(postgres_config['initiate_db']) > 0:
         from src.core.database.factory import run
         run(postgres_config)
