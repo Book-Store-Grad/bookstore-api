@@ -31,7 +31,10 @@ class CreateOrder(BusinessModel):
 
         total = 0
         for item in items:
-            total += int(item['b_price'])
+            try:
+                total += int(item['b_price'])
+            except:
+                total += 0
 
         order = self.model.insert(
             data={
@@ -40,7 +43,10 @@ class CreateOrder(BusinessModel):
             }
         ).get_one(
             fields=[
-                "{}.*".format(self.model.table_name),
+                "{}.o_id".format(self.model.table_name),
+                "{}.cu_id".format(self.model.table_name),
+                "{}.o_total".format(self.model.table_name),
+                "{}.o_created_on".format(self.model.table_name),
                 "cu_customer.cu_name",
                 "cu_customer.cu_email",
                 "cu_customer.cu_gender"

@@ -18,6 +18,11 @@ class UpdateBook(BusinessModel):
     def run(self, data: dict = None, conditions: dict = None) -> dict:
         # TODO: Check what fields that the user is updating
 
+        try:
+            self.data.price = float(self.data.price)
+        except:
+            raise Exception("Invalid price")
+
         book = super().run(
             data={
                 "b_name": self.data.name,
@@ -36,7 +41,7 @@ class UpdateBook(BusinessModel):
         book = IBook(
             id=book['b_id'],
             name=book['b_name'],
-            price=book['b_price'],
+            price=float(book['b_price']),
             genre=book['b_genre'],
             description=book['b_description'],
         )

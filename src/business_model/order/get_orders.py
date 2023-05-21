@@ -19,7 +19,10 @@ class GetOrders(BusinessModel):
 
         order = self.model.get(
             fields=[
-                "{}.*".format(self.model.table_name),
+                "{}.o_id".format(self.model.table_name),
+                "{}.cu_id".format(self.model.table_name),
+                "{}.o_total".format(self.model.table_name),
+                "{}.o_created_on".format(self.model.table_name),
                 "cu_customer.cu_name",
                 "cu_customer.cu_email",
                 "cu_customer.cu_gender"

@@ -51,4 +51,14 @@ class GetBooks(BusinessModel):
             {has_condition} {conditions};
         """.format(has_condition=has_condition, conditions=conditions)
 
-        return self.model.add_transaction(sql).show().result
+        books = self.model.add_transaction(sql).show().result
+
+        for book in books:
+            book['cover_image_url'] = '/book/{}/image'.format(book['b_id'])
+
+            try:
+                book['b_price'] = float(book['b_price'])
+            except:
+                book['b_price'] = 0.0
+
+        return books

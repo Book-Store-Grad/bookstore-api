@@ -27,4 +27,9 @@ class GetBook(BusinessModel):
 
         book['cover_image_url'] = '/book/{}/image'.format(self.book_id)
 
+        try:
+            book['b_price'] = float(book['b_price'])
+        except ValueError:
+            book['b_price'] = 0
+
         return book

@@ -18,7 +18,10 @@ class GetOrderItems(BusinessModel):
 
         items = self.model.get(
             fields=[
-                "{}.*".format(self.model.table_name),
+                "{}.cai_id".format(self.model.table_name),
+                "{}.cu_id".format(self.model.table_name),
+                "{}.b_id".format(self.model.table_name),
+                "{}.o_id".format(self.model.table_name),
                 "cu_customer.cu_name",
                 "cu_customer.cu_email",
                 "cu_customer.cu_gender"

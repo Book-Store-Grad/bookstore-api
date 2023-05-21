@@ -15,7 +15,7 @@ class IEditBook(BaseModel):
     description: str
     genre: str
     author_id: int
-    price: str
+    price: float
 
 
 class IBook(BaseModel):

@@ -7,6 +7,7 @@ from src.business_model.book.create_book import CreateBook
 from src.business_model.book.delete_book import DeleteBook
 from src.business_model.book.get_book import GetBook
 from src.business_model.book.get_books import GetBooks
+from src.business_model.book.get_customer_ordered_books import GetCustomerOrderedBooks
 from src.business_model.book.get_file import GetBookFile
 from src.business_model.book.get_image import GetBookImage
 from src.business_model.book.update_book import UpdateBook
@@ -18,8 +19,32 @@ from view.book import IEditBook
 TAG = "Book"
 
 
+@app.get("/book/customer/{customer_id}", tags=[TAG])
+def get_customer_books(customer_id: int):
+    try:
+        customer_id = int(customer_id)
+    except:
+        raise HTTPException(
+            detail="Customer id must be a valid int",
+            status_code=400
+        )
+
+    books = GetCustomerOrderedBooks(
+        customer_id=customer_id
+    ).run()
+
+    return Response(
+        access_token="",
+        status_code=200,
+        message="",
+        content={
+            "books": books,
+        }
+    )
+
+
 @app.get("/book/all", tags=[TAG])
-def get_all_books(category: str = None, author_id: str = None, query: str = None):
+def get_all_books(category: str = None, author_id: str = None, customer_id: str = None, query: str = None):
 
     if author_id:
         try:
@@ -29,8 +54,6 @@ def get_all_books(category: str = None, author_id: str = None, query: str = None
                 detail="Author id must be a valid int",
                 status_code=400
             )
-
-    print("category", category, "author_id", author_id)
 
     books = GetBooks(
         category=category,
@@ -266,10 +289,16 @@ def update_book(book_id: int, book: IEditBook, token: str = Depends(oauth_schema
             status_code=400
         )
 
-    book = UpdateBook(
-        book_id=book_id,
-        book=book
-    ).run()
+    try:
+        book = UpdateBook(
+            book_id=book_id,
+            book=book
+        ).run()
+    except Exception as e:
+        raise HTTPException(
+            detail=str(e),
+            status_code=400
+        )
 
     return Response(
         access_token="",

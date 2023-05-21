@@ -17,7 +17,20 @@ class GetFavorites(BusinessModel):
                 "cu_id": {
                     "$value": str(self.customer_id)
                 }
-            }
+            },
+            joins={
+                "$schema_name": "public",
+                "b_book": {
+                    "$table": "$this",
+                    "$type": "innerJoin",  # innerJoin, leftJoin, rightJoin
+                    "$on": {
+                        "$type": "$eq",
+                        "$tableA": "{}.b_id".format(self.model.table_name),
+                        "$tableB": "b_book.b_id",
+                    }
+                },
+            },
         ).show().result
+
         return favorites
 
