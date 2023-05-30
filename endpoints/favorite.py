@@ -8,8 +8,7 @@ from src.business_model.favorite.delete_favorites import DeleteFavorite
 from src.business_model.favorite.get_favorite import GetFavorite
 from src.business_model.favorite.get_favorites import GetFavorites
 
-
-@app.get('/favorite/all')
+@app.get('/favorite/all', tags=["Favorite"])
 def get_favorite(token: str = Depends(oauth_schema)):
     payload = DecodeToken(
         token=token
@@ -29,7 +28,7 @@ def get_favorite(token: str = Depends(oauth_schema)):
     }
 
 
-@app.get('/favorite/{favorite_id}')
+@app.get('/favorite/{favorite_id}', tags=["Favorite"])
 def get_favorite(favorite_id: int, token: str = Depends(oauth_schema)):
     payload = DecodeToken(
         token=token
@@ -53,7 +52,7 @@ class ICreateFavorite(BaseModel):
     book_id: int
 
 
-@app.post('/favorite')
+@app.post('/favorite', tags=["Favorite"])
 def create_favorite(data: ICreateFavorite, token: str = Depends(oauth_schema)):
     payload = DecodeToken(
         token=token
@@ -74,7 +73,7 @@ def create_favorite(data: ICreateFavorite, token: str = Depends(oauth_schema)):
     }
 
 
-@app.delete('/favorite/{favorite_id}')
+@app.delete('/favorite/{favorite_id}', tags=["Favorite"])
 def delete_favorite(favorite_id: int, token: str = Depends(oauth_schema)):
     payload = DecodeToken(
         token=token
