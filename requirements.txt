@@ -7,3 +7,4 @@ starlette==0.19.1
 PyJWT==2.4.0
 python-multipart==0.0.6
 yagmail==0.15.293
+scikit-learn==1.0
