@@ -18,7 +18,7 @@ class SignIn(BusinessModel):
             email=self.email,
         ).run()
 
-        if customer['cu_gender'] is True:
+        if customer['cu_gender']:
             customer['cu_gender'] = "male"
         else:
             customer['cu_gender'] = "female"

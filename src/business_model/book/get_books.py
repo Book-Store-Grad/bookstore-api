@@ -2,6 +2,7 @@ from src.core.business_model import BusinessModel, ModelType
 from src.data_model.book import Book
 
 
+# TODO: Add is_favorite
 class GetBooks(BusinessModel):
     def __init__(self, query: str = None, category: str = None, author_id: int = None):
         self.query = query

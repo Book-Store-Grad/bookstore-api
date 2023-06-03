@@ -18,7 +18,7 @@ class CreateCustomer(BusinessModel):
         elif self.customer.gender.lower() in ["m", "male"]:
             gender = True
         else:
-            raise Exception("Gender not correctly specified, only M or F is accepted")
+            raise Exception("Gender not correctly specified, only male or female is accepted")
 
         customer = super().run(
             data={
@@ -32,5 +32,11 @@ class CreateCustomer(BusinessModel):
 
         customer.pop("cu_password", None)
         customer.pop("cu_pw_code", None)
+
+        gender = "male"
+        if not customer['cu_gender']:
+            gender = "female"
+
+        customer['cu_gender'] = gender
 
         return customer

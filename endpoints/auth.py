@@ -108,7 +108,7 @@ def signup(user: ISignUp):
     except Exception as error_message:
         print("error_message: ", error_message)
         raise HTTPException(
-            detail="User Creation Failed",
+            detail="User Creation Failed: {}".format(error_message),
             status_code=422
         )
 

@@ -97,7 +97,6 @@ def update_image(image: UploadFile = File(...), token: str = Depends(oauth_schem
     )
 
 
-
 @app.get('/customer/image', tags=[CUSTOMER_TAG])
 def get_image(token: str = Depends(oauth_schema)):
     payload = DecodeToken(

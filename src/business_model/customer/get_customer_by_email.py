@@ -31,6 +31,10 @@ class GetCustomerByEmail(BusinessModel):
         ).show(True).result
 
         gender = 'male'
+        print("customer", customer)
+        if len(customer) == 0:
+            return {}
+
         if not customer['cu_gender']:
             gender = 'female'
 
