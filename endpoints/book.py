@@ -44,7 +44,7 @@ def get_customer_books(customer_id: int):
 
 
 @app.get("/book/all", tags=[TAG])
-def get_all_books(category: str = None, author_id: str = None, customer_id: str = None, query: str = None):
+def get_all_books(category: str = None, author_id: str = None, query: str = None):
 
     if author_id:
         try:
@@ -147,6 +147,12 @@ def get_book(book_id: int):
         int(book_id)
     ).run()
 
+    if books is None:
+        raise HTTPException(
+            detail="Book does not exist",
+            status_code=404
+        )
+
     return Response(
         access_token="",
         status_code=200,
@@ -163,6 +169,14 @@ def create_book(book: IEditBook, token: str = Depends(oauth_schema)):
         token
     ).run()
 
+    if payload.role.lower() != 'author':
+        raise HTTPException(
+            detail="User not authorized",
+            status_code=401
+        )
+
+    author_id = payload.customer_id
+
     print("Payload:", payload)
 
     if payload.role.lower() != 'author':
@@ -172,7 +186,8 @@ def create_book(book: IEditBook, token: str = Depends(oauth_schema)):
         )
 
     book = CreateBook(
-        book=book
+        book=book,
+        author_id=author_id
     ).run()
 
     return Response(
@@ -273,6 +288,8 @@ def update_book(book_id: int, book: IEditBook, token: str = Depends(oauth_schema
         token
     ).run()
 
+    author_id = payload.customer_id
+
     print("Payload:", payload)
 
     if payload.role.lower() != 'author':
@@ -292,7 +309,7 @@ def update_book(book_id: int, book: IEditBook, token: str = Depends(oauth_schema
     try:
         book = UpdateBook(
             book_id=book_id,
-            book=book
+            book=book,
         ).run()
     except Exception as e:
         raise HTTPException(

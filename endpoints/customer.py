@@ -17,7 +17,7 @@ from src.interface.token import IToken
 CUSTOMER_TAG = "Customer"
 
 
-@app.get('/customer/profile', tags=[CUSTOMER_TAG])
+@app.get('/user/profile', tags=[CUSTOMER_TAG])
 def get_customer(token: str = Depends(oauth_schema)):
     payload = DecodeToken(
         token=token
@@ -46,7 +46,7 @@ def get_customer(token: str = Depends(oauth_schema)):
     )
 
 
-@app.put("/customer/profile", tags=[CUSTOMER_TAG])
+@app.put("/user/profile", tags=[CUSTOMER_TAG])
 def update_customer(customer: IUpdateCustomer, token: str = Depends(oauth_schema)):
     payload = DecodeToken(
         token=token
@@ -78,7 +78,7 @@ def update_customer(customer: IUpdateCustomer, token: str = Depends(oauth_schema
     )
 
 
-@app.post("/customer/image", tags=[CUSTOMER_TAG])
+@app.post("/user/image", tags=[CUSTOMER_TAG])
 def update_image(image: UploadFile = File(...), token: str = Depends(oauth_schema)):
     payload = DecodeToken(
         token=token
@@ -97,7 +97,7 @@ def update_image(image: UploadFile = File(...), token: str = Depends(oauth_schem
     )
 
 
-@app.get('/customer/image', tags=[CUSTOMER_TAG])
+@app.get('/user/image', tags=[CUSTOMER_TAG])
 def get_image(token: str = Depends(oauth_schema)):
     payload = DecodeToken(
         token=token
@@ -106,5 +106,11 @@ def get_image(token: str = Depends(oauth_schema)):
     image_path = GetCustomerImage(
         customer_id=payload.customer_id
     ).run()
+
+    if not image_path or not os.path.exists(image_path):
+        raise HTTPException(
+            detail="Image does not exist",
+            status_code=400
+        )
 
     return FileResponse(image_path)

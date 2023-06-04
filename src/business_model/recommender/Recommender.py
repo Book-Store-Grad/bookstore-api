@@ -1,6 +1,7 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
+from src.business_model.book.get_books import GetBooks
 from src.business_model.recommender.BookLoader import BookLoader
 
 
@@ -23,9 +24,13 @@ class Recommender:
         top_indices = similarity_scores.argsort()[::-1][1:top_n+1]
 
         # Get the recommended book titles
-        recommended_books = self.books.loc[top_indices, 'b_name']
+        recommended_books = self.books.loc[top_indices, 'b_id'].astype(str)
 
         recommended_books = recommended_books.to_list()
 
-        return recommended_books
+        print("recommended_books:", recommended_books)
+
+        books = GetBooks().get_in_ids(recommended_books)
+
+        return books
 

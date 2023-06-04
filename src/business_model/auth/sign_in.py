@@ -18,10 +18,10 @@ class SignIn(BusinessModel):
             email=self.email,
         ).run()
 
-        if customer['cu_gender']:
-            customer['cu_gender'] = "male"
+        if customer['u_gender']:
+            customer['u_gender'] = "male"
         else:
-            customer['cu_gender'] = "female"
+            customer['u_gender'] = "female"
 
         if customer is None:
             return None

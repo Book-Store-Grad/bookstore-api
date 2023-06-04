@@ -15,12 +15,12 @@ class GetCustomer(BusinessModel):
     def run(self, data: dict = None, conditions: dict = None) -> dict:
         customer = self.model.get_one(
             fields=[
-                "cu_id",
-                "cu_name",
-                "cu_email",
-                "cu_gender",
-                "cu_role",
-                "cu_created_on",
+                "cu_id as u_id",
+                "cu_name as u_name",
+                "cu_email as u_email",
+                "cu_gender as u_gender",
+                "cu_role as u_role",
+                "cu_created_on as u_created_on",
             ],
             condition={
                 "cu_id": {
@@ -29,6 +29,6 @@ class GetCustomer(BusinessModel):
             }
         ).show(True).result
 
-        customer['cu_gender'] = "male" if str(customer['cu_gender']).lower() == "true" else "female"
+        customer['u_gender'] = "male" if str(customer['u_gender']).lower() == "true" else "female"
 
         return customer

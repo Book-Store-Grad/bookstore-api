@@ -26,6 +26,11 @@ class GetBook(BusinessModel):
 
         book = self.model.add_transaction(sql).show(True).result
 
+        print("Book:", book)
+
+        if not book:
+            return None
+
         book['cover_image_url'] = '/book/{}/image'.format(self.book_id)
 
         try:

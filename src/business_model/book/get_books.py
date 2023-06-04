@@ -19,12 +19,17 @@ class GetBooks(BusinessModel):
             model_type=ModelType.read
         )
 
+    def get_in_ids(self, ids: list) -> list:
+        return self.model.add_transaction(
+            """SELECT * FROM b_book WHERE b_id IN ({})""".format(",".join(ids))).show().result
+
     def run(self, data: dict = None, conditions: dict = None) -> list:
         # Add field is_favorite
         # Add is_owned
         # Add is_free
 
-        conditions = []
+        if conditions is None:
+            conditions = []
 
         has_condition = ""
         if self.category or self.author_id or self.query:

@@ -15,11 +15,11 @@ class GetCustomerByPasswordCode(BusinessModel):
     def run(self, data: dict = None, conditions: dict = None) -> dict:
         return self.model.get_one(
             fields=[
-                "cu_id",
-                "cu_name",
-                "cu_email",
-                "cu_role",
-                "cu_created_on",
+                "cu_id as u_id",
+                "cu_name as u_name",
+                "cu_email as u_email",
+                "cu_role as u_role",
+                "cu_created_on as u_created_on",
             ],
             condition={
                 "cu_pw_code": {

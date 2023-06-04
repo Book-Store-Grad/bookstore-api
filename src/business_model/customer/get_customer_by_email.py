@@ -15,12 +15,12 @@ class GetCustomerByEmail(BusinessModel):
     def run(self, data: dict = None, conditions: dict = None) -> dict:
         customer = self.model.get_one(
             fields=[
-                "cu_id",
-                "cu_name",
-                "cu_email",
-                "cu_gender",
-                "cu_role",
-                "cu_created_on",
+                "cu_id as u_id",
+                "cu_name as u_name",
+                "cu_email as u_email",
+                "cu_gender as u_gender",
+                "cu_role as u_role",
+                "cu_created_on as u_created_on",
                 "cu_password",
             ],
             condition={
@@ -35,9 +35,9 @@ class GetCustomerByEmail(BusinessModel):
         if len(customer) == 0:
             return {}
 
-        if not customer['cu_gender']:
+        if not customer['u_gender']:
             gender = 'female'
 
-        customer['cu_gender'] = gender
+        customer['u_gender'] = gender
 
         return customer

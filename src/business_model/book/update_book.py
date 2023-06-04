@@ -16,7 +16,6 @@ class UpdateBook(BusinessModel):
         self.data = book
 
     def run(self, data: dict = None, conditions: dict = None) -> dict:
-        # TODO: Check what fields that the user is updating
 
         try:
             self.data.price = float(self.data.price)
@@ -29,7 +28,6 @@ class UpdateBook(BusinessModel):
                 "b_genre": self.data.genre,
                 "b_price": self.data.price,
                 "b_description": self.data.description,
-                "a_id": self.data.author_id,
             },
             conditions={
                 "b_id": {

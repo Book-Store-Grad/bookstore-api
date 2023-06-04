@@ -8,6 +8,7 @@ from src.business_model.favorite.delete_favorites import DeleteFavorite
 from src.business_model.favorite.get_favorite import GetFavorite
 from src.business_model.favorite.get_favorites import GetFavorites
 
+
 @app.get('/favorite/all', tags=["Favorite"])
 def get_favorite(token: str = Depends(oauth_schema)):
     payload = DecodeToken(
@@ -24,26 +25,6 @@ def get_favorite(token: str = Depends(oauth_schema)):
         "status_code": 200,
         "content": {
             "favorites": favorites
-        }
-    }
-
-
-@app.get('/favorite/{favorite_id}', tags=["Favorite"])
-def get_favorite(favorite_id: int, token: str = Depends(oauth_schema)):
-    payload = DecodeToken(
-        token=token
-    ).run()
-
-    favorite = GetFavorite(
-        favorite_id=favorite_id
-    ).run()
-
-    return {
-        "access_token": "",
-        "message": "Success",
-        "status_code": 200,
-        "content": {
-            "favorite": dict(favorite)
         }
     }
 

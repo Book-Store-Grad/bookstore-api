@@ -66,8 +66,8 @@ def signin(user: ISignIn = Depends()):
         )
 
     token = GenerateToken(
-        customer_id=customer['cu_id'],
-        role=str(customer['cu_role']).lower()
+        customer_id=customer['u_id'],
+        role=str(customer['u_role']).lower()
     ).run()
 
     return Response(
@@ -75,7 +75,7 @@ def signin(user: ISignIn = Depends()):
         status_code=200,
         message="",
         content={
-            "customer": customer
+            "user": customer
         },
     )
 
@@ -113,8 +113,8 @@ def signup(user: ISignUp):
         )
 
     token = GenerateToken(
-        customer_id=customer['cu_id'],
-        role=customer['cu_role']
+        customer_id=customer['u_id'],
+        role=customer['u_role']
     ).run()
 
     return Response(

@@ -12,7 +12,7 @@ class GetCartItems(BusinessModel):
         self.customer_id = customer_id
 
     def run(self, data: dict = None, conditions: dict = None) -> list:
-        return self.model.get(
+        books = self.model.get(
             joins={
                 "$schema_name": "public",
                 "cu_customer": {
@@ -40,3 +40,19 @@ class GetCartItems(BusinessModel):
                 }
             }
         ).show().result
+
+        print("books:", books)
+
+        items = []
+        for book in books:
+            items.append({
+                "cai_id": book["cai_id"],
+                "b_id": book["b_id"],
+                "b_name": book["b_name"],
+                "b_price": book["b_price"],
+                "b_genre": book["b_genre"],
+                "b_description": book["b_description"],
+            })
+
+
+        return items

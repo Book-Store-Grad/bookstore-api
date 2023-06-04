@@ -39,4 +39,12 @@ class CreateCustomer(BusinessModel):
 
         customer['cu_gender'] = gender
 
-        return customer
+        return {
+            "u_id": customer['cu_id'],
+            "u_name": customer['cu_name'],
+            "u_email": customer['cu_email'],
+            "u_image_url": customer['cu_image_url'],
+            "u_gender": customer['cu_gender'],
+            "u_role": customer['cu_role'],
+            "u_created_on": customer['cu_created_on'],
+        }
