@@ -33,7 +33,6 @@ class GetFavorites(BusinessModel):
         ).show().result
 
         for favorite in favorites:
-            print("favorite", favorite)
             favorite['cover_image_url'] = '/book/{}/image'.format(favorite['b_id'])
 
             try:
