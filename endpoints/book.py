@@ -1,4 +1,4 @@
-from fastapi import HTTPException, UploadFile, File, Depends
+from fastapi import HTTPException, UploadFile, File, Depends, Header
 from starlette.responses import FileResponse
 
 from server.application import app, oauth_schema
@@ -44,7 +44,17 @@ def get_customer_books(customer_id: int):
 
 
 @app.get("/book/all", tags=[TAG])
-def get_all_books(category: str = None, author_id: str = None, query: str = None):
+def get_all_books(category: str = None, author_id: str = None, query: str = None, authorization=Header(None)):
+    authorization = str(authorization)
+    customer_id = None
+    if authorization is not None:
+        try:
+            payload = DecodeToken(
+                token=authorization.split(" ")[1]
+            ).run()
+            customer_id = payload.customer_id
+        except Exception as e:
+            pass
 
     if author_id:
         try:
@@ -58,7 +68,8 @@ def get_all_books(category: str = None, author_id: str = None, query: str = None
     books = GetBooks(
         category=category,
         author_id=author_id,
-        query=query
+        query=query,
+        customer_id=customer_id,
     ).run()
 
     return Response(

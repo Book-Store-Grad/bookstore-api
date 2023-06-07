@@ -1,16 +1,17 @@
+from src.business_model.favorite.get_favorites import GetFavorites
 from src.core.business_model import BusinessModel, ModelType
 from src.data_model.book import Book
 
 
 # TODO: Add is_favorite
 class GetBooks(BusinessModel):
-    def __init__(self, query: str = None, category: str = None, author_id: int = None):
+    def __init__(self, query: str = None, category: str = None, author_id: int = None, customer_id: int = None):
         self.query = query
 
         self.category = category
         self.author_id = author_id
 
-        print("category", self.category)
+        self.customer_id = customer_id
 
         self.model = Book()
 
@@ -65,10 +66,24 @@ class GetBooks(BusinessModel):
 
         for book in books:
             book['cover_image_url'] = '/book/{}/image'.format(book['b_id'])
+            book['is_favorite'] = False
 
             try:
                 book['b_price'] = float(book['b_price'])
             except:
                 book['b_price'] = 0.0
+
+        if self.customer_id:
+            favorites = GetFavorites(
+                customer_id=self.customer_id
+            ).run()
+            favorites_hash = {}
+            for favorite in favorites:
+                favorites_hash[favorite['b_id']] = favorite
+
+            for book in books:
+                book['is_favorite'] = False
+                if book['b_id'] in favorites_hash:
+                    book['is_favorite'] = True
 
         return books
