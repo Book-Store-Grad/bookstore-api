@@ -21,7 +21,11 @@ class GetBooks(BusinessModel):
 
     def get_in_ids(self, ids: list) -> list:
         return self.model.add_transaction(
-            """SELECT * FROM b_book WHERE b_id IN ({})""".format(",".join(ids))).show().result
+            """SELECT 
+                CASE WHEN b_price = '0' THEN True ELSE CASE WHEN b_price = '' THEN True ELSE FALSE END END as is_free,
+                b_id in (select b_id from ca_cart_items where cu_id = 25) as is_owned,
+                * 
+                FROM b_book WHERE b_id IN ({})""".format(",".join(ids))).show().result
 
     def run(self, data: dict = None, conditions: dict = None) -> list:
         # Add field is_favorite
