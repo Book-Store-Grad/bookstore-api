@@ -1,10 +1,11 @@
+from src.business_model.favorite.get_favorites import GetFavorites
 from src.core.business_model import BusinessModel, ModelType
 from src.data_model.book import Book
 
 
 # TODO: Add is_favorite
 class GetBook(BusinessModel):
-    def __init__(self, book_id: int):
+    def __init__(self, book_id: int, customer_id: int = None):
         self.model = Book()
 
         super().__init__(
@@ -13,6 +14,8 @@ class GetBook(BusinessModel):
         )
 
         self.book_id = book_id
+
+        self.customer_id = customer_id
 
     def run(self, data: dict = None, conditions: dict = None) -> dict:
         sql = """
@@ -26,10 +29,21 @@ class GetBook(BusinessModel):
 
         book = self.model.add_transaction(sql).show(True).result
 
-        print("Book:", book)
-
         if not book:
             return None
+
+        book['is_favorite'] = False
+
+        print("Book:", book)
+
+        if self.customer_id:
+            favorites = GetFavorites(
+                customer_id=self.customer_id
+            ).run()
+
+            favorites_book_ids = [favorite['b_id'] for favorite in favorites]
+
+            book['is_favorite'] = book['b_id'] in favorites_book_ids
 
         book['cover_image_url'] = '/book/{}/image'.format(self.book_id)
 

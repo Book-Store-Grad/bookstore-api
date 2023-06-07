@@ -145,7 +145,18 @@ def get_book_file(book_id: int):
 
 
 @app.get("/book/{book_id}", tags=[TAG])
-def get_book(book_id: int):
+def get_book(book_id: int, authorization=Header(None)):
+    authorization = str(authorization)
+
+    customer_id = None
+    try:
+        payload = DecodeToken(
+            token=authorization.split(" ")[1]
+        ).run()
+        customer_id = payload.customer_id
+    except:
+        pass
+
     try:
         book_id = int(book_id)
     except:
@@ -155,7 +166,8 @@ def get_book(book_id: int):
         )
 
     books = GetBook(
-        int(book_id)
+        book_id=int(book_id),
+        customer_id=customer_id
     ).run()
 
     if books is None:
