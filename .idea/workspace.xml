@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="867e8d51-4527-4ee2-87e0-5d845e277c3a" name="Changes" comment="test" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FastAPI main" />
+        <option value="FastAPI test_main" />
+        <option value="Freeze Requirements File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HttpClientSelectedEnvironments">
+    <file url="jar://$APPLICATION_HOME_DIR$/plugins/restClient/lib/restClient.jar!/com/intellij/ws/rest/client/requests/collection/post-requests.http" environment="test" />
+    <file url="jar://$APPLICATION_HOME_DIR$/plugins/restClient/lib/restClient.jar!/com/intellij/ws/rest/client/requests/collection/requests-with-tests.http" environment="test" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2MXl1dYYJLd5VCNcFnIN0sg2RrR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;H:/Projects/Github/bookstore-api/endpoints&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="H:\Projects\Github\bookstore-api\endpoints" />
+      <recent name="H:\Projects\Github\bookstore-api\src\business_model\recommender" />
+      <recent name="H:\Projects\Github\bookstore-api\view" />
+      <recent name="H:\Projects\Github\bookstore-api\src\business_model" />
+      <recent name="H:\Projects\Github\bookstore-api\src\business_model\favorite" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.main">
+    <configuration name="test_main | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/test_main.http" requestIdentifier="#1" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="bookstore-api" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Aly\AppData\Local\Programs\Python\Python38\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="bookstore-api" type="Python.FastAPI">
+      <option name="file" value="$PROJECT_DIR$/main.py" />
+      <module name="bookstore-api" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="C:\Users\Aly\AppData\Local\Programs\Python\Python38\python.exe" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="FastAPI.bookstore-api" />
+      <item itemvalue="HTTP Request.test_main | #1" />
+      <item itemvalue="Python.main" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="HTTP Request.test_main | #1" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="867e8d51-4527-4ee2-87e0-5d845e277c3a" name="Changes" comment="" />
+      <created>1677921593775</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1677921593775</updated>
+      <workItem from="1677921615309" duration="7239000" />
+      <workItem from="1677933756112" duration="711000" />
+      <workItem from="1677934508855" duration="17000" />
+      <workItem from="1677934640179" duration="17000" />
+      <workItem from="1677935066739" duration="12029000" />
+      <workItem from="1678009317234" duration="6994000" />
+      <workItem from="1678039741609" duration="7702000" />
+      <workItem from="1678113215358" duration="1864000" />
+      <workItem from="1678125406525" duration="624000" />
+      <workItem from="1678735912770" duration="1227000" />
+      <workItem from="1678737799116" duration="690000" />
+      <workItem from="1678742205158" duration="4806000" />
+      <workItem from="1678747623977" duration="47000" />
+      <workItem from="1678894118709" duration="805000" />
+      <workItem from="1678897459121" duration="435000" />
+      <workItem from="1678905823854" duration="972000" />
+      <workItem from="1679001047594" duration="538000" />
+      <workItem from="1679140050881" duration="598000" />
+      <workItem from="1679144867733" duration="1558000" />
+      <workItem from="1679155266594" duration="96000" />
+      <workItem from="1679330578986" duration="4466000" />
+      <workItem from="1679337028602" duration="806000" />
+      <workItem from="1679606491471" duration="11000" />
+      <workItem from="1679619495070" duration="33000" />
+      <workItem from="1679633399325" duration="4364000" />
+      <workItem from="1679717867138" duration="2515000" />
+      <workItem from="1679891538598" duration="2455000" />
+      <workItem from="1679928557632" duration="15000" />
+      <workItem from="1680031626710" duration="1385000" />
+      <workItem from="1680240836953" duration="850000" />
+      <workItem from="1680242080116" duration="18000" />
+      <workItem from="1680750086320" duration="1186000" />
+      <workItem from="1680752056045" duration="520000" />
+      <workItem from="1680753626889" duration="722000" />
+      <workItem from="1680755007339" duration="283000" />
+      <workItem from="1680755323983" duration="3000" />
+      <workItem from="1681073509125" duration="631000" />
+      <workItem from="1681074505679" duration="2294000" />
+      <workItem from="1681076833997" duration="53000" />
+      <workItem from="1681076915539" duration="91000" />
+      <workItem from="1681358633594" duration="4000" />
+      <workItem from="1681358687437" duration="244000" />
+      <workItem from="1682415046134" duration="785000" />
+      <workItem from="1682590519705" duration="34000" />
+      <workItem from="1682756368549" duration="149000" />
+      <workItem from="1682756536080" duration="2052000" />
+      <workItem from="1683116107040" duration="1500000" />
+      <workItem from="1683387321869" duration="633000" />
+      <workItem from="1683667124645" duration="13000" />
+      <workItem from="1683753612427" duration="491000" />
+      <workItem from="1683772713596" duration="365000" />
+      <workItem from="1683820419143" duration="1006000" />
+      <workItem from="1683862678911" duration="827000" />
+      <workItem from="1683863543776" duration="1963000" />
+      <workItem from="1683906462227" duration="896000" />
+      <workItem from="1683994626359" duration="1110000" />
+      <workItem from="1683995995470" duration="4186000" />
+      <workItem from="1684009954820" duration="4349000" />
+      <workItem from="1684095639661" duration="882000" />
+      <workItem from="1684240469470" duration="4037000" />
+      <workItem from="1684626371147" duration="3086000" />
+      <workItem from="1684703995745" duration="18000" />
+      <workItem from="1684704028177" duration="10000" />
+      <workItem from="1684762560036" duration="70000" />
+      <workItem from="1684762648635" duration="642000" />
+      <workItem from="1685479864821" duration="388000" />
+      <workItem from="1685497415273" duration="3409000" />
+      <workItem from="1685675610381" duration="18000" />
+      <workItem from="1685675804521" duration="90000" />
+      <workItem from="1685678191305" duration="46000" />
+      <workItem from="1685720047277" duration="514000" />
+      <workItem from="1685823416601" duration="2854000" />
+      <workItem from="1685837811306" duration="5351000" />
+      <workItem from="1686083107828" duration="594000" />
+      <workItem from="1686104528183" duration="3611000" />
+      <workItem from="1686194731507" duration="58000" />
+      <workItem from="1686496952553" duration="1480000" />
+    </task>
+    <task id="LOCAL-00072" summary="ADD: Send Email when forgetting password">
+      <created>1679634192158</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1679634192159</updated>
+    </task>
+    <task id="LOCAL-00073" summary="FIX: Error login, ADD: cu_gender to GetCustomerByEmail Response">
+      <created>1679634291336</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1679634291336</updated>
+    </task>
+    <task id="LOCAL-00074" summary="ADD: Book Image upload">
+      <created>1679635417310</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1679635417310</updated>
+    </task>
+    <task id="LOCAL-00075" summary="ADD: Book File upload">
+      <created>1679635544200</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1679635544200</updated>
+    </task>
+    <task id="LOCAL-00076" summary="ADD: Get Book Image">
+      <created>1679636096371</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1679636096371</updated>
+    </task>
+    <task id="LOCAL-00077" summary="FIX: Get file and image, fix internal server error">
+      <created>1679636442841</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1679636442841</updated>
+    </task>
+    <task id="LOCAL-00078" summary="Show error when forgetpassword email fails to be sent">
+      <created>1679637094575</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1679637094575</updated>
+    </task>
+    <task id="LOCAL-00079" summary="FIX: Send Email">
+      <created>1679718459834</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1679718459834</updated>
+    </task>
+    <task id="LOCAL-00080" summary="ADD: Get and upload customer profile image">
+      <created>1679719081086</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1679719081086</updated>
+    </task>
+    <task id="LOCAL-00081" summary="ADD: Update Customer Profile Info">
+      <created>1679719748255</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1679719748256</updated>
+    </task>
+    <task id="LOCAL-00082" summary="ADD: Role to token interface">
+      <created>1679927391625</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1679927391626</updated>
+    </task>
+    <task id="LOCAL-00083" summary="ADD: Role to token generation and decoding">
+      <created>1679927406870</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1679927406870</updated>
+    </task>
+    <task id="LOCAL-00084" summary="ADD: Role to token on signin and signup">
+      <created>1679927433043</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1679927433043</updated>
+    </task>
+    <task id="LOCAL-00085" summary="ADD: tokens to upload image and uplaod file">
+      <created>1679927512011</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1679927512011</updated>
+    </task>
+    <task id="LOCAL-00086" summary="ADD: role to interface">
+      <created>1679927898305</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1679927898305</updated>
+    </task>
+    <task id="LOCAL-00087" summary="ADD: role to business model">
+      <created>1679927917379</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1679927917379</updated>
+    </task>
+    <task id="LOCAL-00088" summary="ADD: role to route body">
+      <created>1679927934469</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1679927934469</updated>
+    </task>
+    <task id="LOCAL-00089" summary="REPLACE: Customer text to User">
+      <created>1679927949464</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1679927949464</updated>
+    </task>
+    <task id="LOCAL-00090" summary="Print user info">
+      <created>1680241685463</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1680241685464</updated>
+    </task>
+    <task id="LOCAL-00091" summary="modify: makedirs instead of mkdir">
+      <created>1680754053129</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1680754053129</updated>
+    </task>
+    <task id="LOCAL-00092" summary="return book dict on create">
+      <created>1680754331439</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1680754331439</updated>
+    </task>
+    <task id="LOCAL-00093" summary="update host from localhost to public">
+      <created>1682756566690</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1682756566690</updated>
+    </task>
+    <task id="LOCAL-00094" summary="Fix: Cart items">
+      <created>1683863865357</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1683863865357</updated>
+    </task>
+    <task id="LOCAL-00095" summary="Add: Search in books by name">
+      <created>1683996306970</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1683996306971</updated>
+    </task>
+    <task id="LOCAL-00096" summary="Add: 2 Fields is_free isowned in single Book">
+      <created>1683996599395</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1683996599395</updated>
+    </task>
+    <task id="LOCAL-00097" summary="Add: Book cover url">
+      <created>1683996708217</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1683996708217</updated>
+    </task>
+    <task id="LOCAL-00098" summary="Add: Gender as string">
+      <created>1683997137413</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1683997137414</updated>
+    </task>
+    <task id="LOCAL-00099" summary="Add: Filters by category and query">
+      <created>1683998485971</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1683998485972</updated>
+    </task>
+    <task id="LOCAL-00100" summary="Add: Filters by category and query">
+      <created>1683998494941</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1683998494941</updated>
+    </task>
+    <task id="LOCAL-00101" summary="Add: Add favorites module">
+      <created>1684041898762</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1684041898763</updated>
+    </task>
+    <task id="LOCAL-00102" summary="Add: Add Author module">
+      <created>1684294166952</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1684294166953</updated>
+    </task>
+    <task id="LOCAL-00103" summary="FIX: Books Module">
+      <created>1684294177085</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1684294177085</updated>
+    </task>
+    <task id="LOCAL-00104" summary="FIX: Author">
+      <created>1684294434023</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1684294434023</updated>
+    </task>
+    <task id="LOCAL-00105" summary="Modify: add author id in book update and create">
+      <created>1684294663755</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1684294663755</updated>
+    </task>
+    <task id="LOCAL-00106" summary="updates">
+      <created>1684628945134</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1684628945134</updated>
+    </task>
+    <task id="LOCAL-00107" summary="Add: Recommendation engine for books">
+      <created>1685498666676</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1685498666677</updated>
+    </task>
+    <task id="LOCAL-00108" summary="Add: scikit learn requirement">
+      <created>1685498819704</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1685498819704</updated>
+    </task>
+    <task id="LOCAL-00109" summary="remove unused import">
+      <created>1685498828436</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1685498828436</updated>
+    </task>
+    <task id="LOCAL-00110" summary="Add: pandas requirement">
+      <created>1685498972174</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1685498972175</updated>
+    </task>
+    <task id="LOCAL-00111" summary="Fix: Sign up">
+      <created>1685824525816</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1685824525817</updated>
+    </task>
+    <task id="LOCAL-00112" summary="Setup: New Db configd">
+      <created>1685824537294</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1685824537294</updated>
+    </task>
+    <task id="LOCAL-00113" summary="Hot Fixes">
+      <created>1685850685355</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1685850685356</updated>
+    </task>
+    <task id="LOCAL-00114" summary="Add README.md">
+      <created>1685851076581</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1685851076581</updated>
+    </task>
+    <task id="LOCAL-00115" summary="Add: instructions">
+      <created>1685851286202</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1685851286202</updated>
+    </task>
+    <task id="LOCAL-00116" summary="Add: is_free and is_owned computed fields">
+      <created>1686106715778</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1686106715780</updated>
+    </task>
+    <task id="LOCAL-00117" summary="Add: cover image and cast price to float">
+      <created>1686106732922</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1686106732922</updated>
+    </task>
+    <task id="LOCAL-00118" summary="remove: logs">
+      <created>1686106754128</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1686106754128</updated>
+    </task>
+    <task id="LOCAL-00119" summary="Add: is_favorite to all books">
+      <created>1686108176742</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1686108176742</updated>
+    </task>
+    <task id="LOCAL-00120" summary="Add: is_favorite to single book">
+      <created>1686108526915</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1686108526915</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add: Book cover url" />
+    <MESSAGE value="Add: Gender as string" />
+    <MESSAGE value="Add: Filters by category and query" />
+    <MESSAGE value="Add: Add favorites module" />
+    <MESSAGE value="Add: Add Author module" />
+    <MESSAGE value="FIX: Books Module" />
+    <MESSAGE value="FIX: Author" />
+    <MESSAGE value="Modify: add author id in book update and create" />
+    <MESSAGE value="updates" />
+    <MESSAGE value="Add: Recommendation engine for books" />
+    <MESSAGE value="Add: scikit learn requirement" />
+    <MESSAGE value="remove unused import" />
+    <MESSAGE value="Add: pandas requirement" />
+    <MESSAGE value="Fix: Sign up" />
+    <MESSAGE value="Setup: New Db configd" />
+    <MESSAGE value="Hot Fixes" />
+    <MESSAGE value="Add README.md" />
+    <MESSAGE value="Add: instructions" />
+    <MESSAGE value="Add: is_free and is_owned computed fields" />
+    <MESSAGE value="Add: cover image and cast price to float" />
+    <MESSAGE value="remove: logs" />
+    <MESSAGE value="Add: is_favorite to all books" />
+    <MESSAGE value="Add: is_favorite to single books" />
+    <MESSAGE value="Add: is_favorite to single book" />
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/bookstore_api$main.coverage" NAME="main Coverage Results" MODIFIED="1686501701180" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
