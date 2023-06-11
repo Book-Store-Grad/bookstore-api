@@ -6,6 +6,7 @@ from src.business_model.recommender.BookLoader import BookLoader
 
 
 class Recommender:
+
     # Preprocess text features
     tfidf = TfidfVectorizer(stop_words='english')
 
