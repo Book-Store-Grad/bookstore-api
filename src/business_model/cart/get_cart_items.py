@@ -46,6 +46,7 @@ class GetCartItems(BusinessModel):
         items = []
         for book in books:
             items.append({
+                "cover_image_url": "/book/{}/image".format(book["b_id"]),
                 "cai_id": book["cai_id"],
                 "b_id": book["b_id"],
                 "b_name": book["b_name"],

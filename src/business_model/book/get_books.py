@@ -21,12 +21,36 @@ class GetBooks(BusinessModel):
         )
 
     def get_in_ids(self, ids: list) -> list:
-        return self.model.add_transaction(
+        books = self.model.add_transaction(
             """SELECT 
                 CASE WHEN b_price = '0' THEN True ELSE CASE WHEN b_price = '' THEN True ELSE FALSE END END as is_free,
                 b_id in (select b_id from ca_cart_items where cu_id = 25) as is_owned,
                 * 
                 FROM b_book WHERE b_id IN ({})""".format(",".join(ids))).show().result
+
+        for book in books:
+            book['cover_image_url'] = '/book/{}/image'.format(book['b_id'])
+            book['is_favorite'] = False
+
+            try:
+                book['b_price'] = float(book['b_price'])
+            except:
+                book['b_price'] = 0.0
+
+        if self.customer_id:
+            favorites = GetFavorites(
+                customer_id=self.customer_id
+            ).run()
+            favorites_hash = {}
+            for favorite in favorites:
+                favorites_hash[favorite['b_id']] = favorite
+
+            for book in books:
+                book['is_favorite'] = False
+                if book['b_id'] in favorites_hash:
+                    book['is_favorite'] = True
+
+        return books
 
     def run(self, data: dict = None, conditions: dict = None) -> list:
         # Add field is_favorite
